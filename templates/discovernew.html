@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Tooplate">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <title>NEPASHRAY</title>
+
+
+    <!-- Additional CSS Files -->
+   <!-- Additional CSS Files -->
+   <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+
+   <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+
+   <link rel="stylesheet" type="text/css" href="{% static 'assets/css/owl-carousel.css' %}">
+
+   <link rel="stylesheet" href="{% static 'assets/css/tooplate-artxibition.css' %}">
+   <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+<!-- this later added -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400" rel="stylesheet" />
+    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet" />
+
+
+    </head>
+    
+<!-- bootstrap nav below commented before mid defense -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <a class="navbar-brand">NEPASHRAYA</a>
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Discover <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+              </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search With Keywords" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    
+    <body>
+    
+
+
+
+        <div class="coming-events" style="background-image: linear-gradient(rgba(2, 54, 73, 0.864), rgba(99, 102, 5, 0.311)), url('{% static 'assets/images/carousellimg2.jpg' %}');">
+           
+    <!-- the seven provinces listed // old coming events -->
+    <div class="left-button">
+        <div class="main-white-button">
+            <a href="hotpicks.html">SEE<br> Hot Picks Of The Week</a>
+        </div>
+    </div>
+
+    <!-- the seven provinces listed -->
+    <div class="container">
+        <div class="row">
+        
+            <h1 class="add-white mb-2" style="justify-content: center"> || DISCOVER SPECIFICS WITH NEPASHRAY'S GENRES  ||</h1>
+            
+            <!-- single card start -->
+            <div class="col-lg-3 ml-5 mb-3">
+                <div class="event-item">
+                    <div class="thumb">
+                        <a href="artpage.html"><img class="img-fit" size="20px" src="{% static 'assets/images/art.jpg' %}" alt="p1"></a>
+                    </div>
+                    <div class="down-content">
+                        <a href="artpage.html"><h4>ART & CULTURE </h4></a>
+                        <ul>
+                            <li style="text-align: center;"> Pashmina, Archaeology,<br> Hand-Crafted Jewels,<br> and more</li>
+                            <!-- <li><i class="fa fa-map-marker"></i> Biratnagar [Capital] </li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- single card start -->
+
+            <div class="col-lg-3 ml-5">
+                <div class="event-item">
+                    <div class="thumb">
+                        <a href="province2.html"><img class="img-fit" size="20px" src="{%static 'assets/images/lifestyle.jpg' %}" alt="p2"></a>
+                    </div>
+                    <div class="down-content">
+                        <a href="province2.html"><h4>LIFESTYLE </h4></a>
+                        <ul>
+                            <li style="text-align:center;">Stories of People, <br> their Daily Routine Lookthroughs, and more</li>
+                            <!-- <li><i class="fa fa-map-</li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 ml-5">
+                <div class="event-item">
+                    <div class="thumb">
+                        <a href="province3.html"><img class="img-fit" size="20px" src="{% static 'assets/images/bioo.jpg' %}" alt=""></a>
+                    </div>
+                    <div class="down-content">
+                        <a href="province3.html"><h4>BIODIVERSITY </h4></a>
+                        <ul>
+                            <li style="text-align: center;">Rare Flora & Fauna, <br> The Serene Nature, <br> and more</li>
+                            <!-- <li><i class="fa fa-map-marker"></i> Hetauda [Capital]</li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="event-item">
+                    <div class="thumb">
+                        <a href="province4.html"><img class="img-fit" size="20px" src="{% static 'assets/images/musicc.jpg' %}" alt="p4"></a>
+                    </div>
+                    <div class="down-content">
+                        <a href="province4.html"><h4>MUSIC</h4></a>
+                        <ul>
+                            <li style="text-align: center;">Modern, <br> Traditional Folk, <br> Instrumental and more</li>
+                            <!-- <li><i class="fa fa-map-marker"></i> Pokhara [Capital]</li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="event-item">
+                    <div class="thumb">
+                        <a href="province5.html"><img class="img-fit" size="20px" src="{% static 'assets/images/phootoo.jpg' %}" alt="p5"></a>
+                    </div>
+                    <div class="down-content">
+                        <a href="province5.html"><h4> STREET CULTURE</h4></a>
+                        <ul>
+                            <li style="text-align: center;">Documentaries,Photos, <br> Graffiti, HipHop <br> and more</li>
+                            <!-- <li><i class="fa fa-map-marker"></i> Deukhuri [Capital]</li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="event-item">
+                    <div class="thumb">
+                        <a href="province6.html"><img class="img-fit" size="20px" src="{% static 'assets/images/foood.jpg' %}" alt="p6"></a>
+                    </div>
+                    <div class="down-content">
+                        <a href="province6.html"><h4>FOOD</h4></a>
+                        <ul>
+                            <li style="text-align: center;">Exotic, Of Festivities,<br> JuJu Dhau, Bhakka and many more</li>
+                            <!-- <li><i class="fa fa-map-marker"></i> Birendranagar [Capital]</li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="event-item">
+                    <div class="thumb">
+                        <a href="province7.html"><img class="img-fit" size="20px" src="{% static 'assets/images/HISTORY.jpg' %}" alt="p7"></a>
+                    </div>
+                    <div class="down-content">
+                        <a href="province7.html"><h4>HISTORY</h4></a>
+                        <ul>
+                            <li style="text-align: center;">Foundation & Formation, <br> Attires, Linguistics, <br> and more</li>
+                            <!-- <li><i class="fa fa-map-marker"></i> Godawari [Capital]</li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
