@@ -15,7 +15,12 @@
 
   
 </head>
-<body>
+<body style="background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+height: 100vh;
+margin: 0;
+background-image: url('{% static 'assets/images/HH.jpg' %}');">
   <header>
     <nav class="navbar">
       <!-- probs here january color white -->
@@ -24,10 +29,10 @@
       </span>
       <!-- till here -->
       <ul class="menu-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="register/index.html">Register</a></li>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'register' %}">Register</a></li>
       
-        <li class="join-btn"><a href="contactpage.html">Contact</a></li>
+        <li class="join-btn"><a href="{% url 'contact' %}">Contact</a></li>
         
       </ul>
       
@@ -88,7 +93,7 @@
 
   <section class="hero-section">
     <div class="content">
-      <h1> Find The Feel That Resonates Your Taste </h1>
+      <h1 style="color: rgb(255, 255, 255);"> Find The Feel That Resonates Your Taste </h1>
       <form action="#" class="search-form">
         <input type="text" placeholder="Search for your interest..." required>
         <button class="material-symbols-outlined" type="sumbit">search</button>

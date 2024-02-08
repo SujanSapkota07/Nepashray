@@ -9,7 +9,9 @@
 </head>
 <body>
 
-    
+    <form action="{% url 'contact' %}" method ="POST"> 
+{% csrf_token %}
+
 <div class="background">
     <div class="containerofcontact">
       <div class="screen">
@@ -36,27 +38,28 @@
           <div class="screen-body-item">
             <div class="app-form">
               <div class="app-form-group">
-                <input class="app-form-control" placeholder="NAME" value="Write Your Name">
+                <input class="app-form-control" name="name" placeholder="NAME" >
               </div>
               <div class="app-form-group">
-                <input class="app-form-control" placeholder="EMAIL">
+                <input class="app-form-control" name= "email"placeholder="EMAIL">
               </div>
               <div class="app-form-group">
-                <input class="app-form-control" placeholder="CONTACT NO">
+                <input class="app-form-control" name= "phone"placeholder="CONTACT NO">
               </div>
               <div class="app-form-group message">
-                <input class="app-form-control" placeholder="MESSAGE">
+                <input class="app-form-control" name= "text_message"placeholder="MESSAGE">
               </div>
               <div class="app-form-group buttons">
                 <button class="app-form-button">CANCEL</button>
-                <button class="app-form-button">SEND</button>
+                <button type = "submit"class="app-form-button">SEND</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
+    </div>
   </div>
+</form>
   </body>
   </html>
   
