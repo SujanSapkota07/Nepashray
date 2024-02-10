@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Topic</title>
+</head>
+<body>
+    <h2>Create Topic</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="file" name="images" multiple>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

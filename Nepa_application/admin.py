@@ -5,4 +5,5 @@ from .models import *
 admin.site.register(provience)
 admin.site.register(image)
 admin.site.register(Contact_us)
-admin.site.register(Post)
+admin.site.register(Topic)
+admin.site.register(T_Image)

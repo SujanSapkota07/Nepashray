@@ -12,3 +12,12 @@ class contact(forms.ModelForm):
         model  = models.Contact_us
         fields = ['name', 'email', 'phone', 'text_message']
     
+
+
+class TopicForm(forms.ModelForm):
+    # images = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+    class Meta:
+        model = models.Topic
+        fields = ['title', 'short_description', 'long_description']
+
+    

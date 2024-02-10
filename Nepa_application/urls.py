@@ -10,4 +10,8 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('province/', views.provience_clicked, name='province'),
 
+    path('create/', views.create, name = 'create'),
+    path('createe/', views.create_topic, name='create_topic'),
+    path('listofpost', views.listofpost, name='listofpost'),
+
 ]
