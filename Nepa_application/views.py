@@ -53,14 +53,20 @@ def contact_us(request):
 # let user post something
 def create_topic(request):
     if request.method == 'POST':
-        form = forms.TopicForm(request.POST, request.FILES)
+
+        form = forms.TopicForm(request.POST, request.FILES) 
+
         if form.is_valid():
+
             topic = form.save()
            
             for image in request.FILES.getlist('images'):
+
                 models.T_Image.objects.create(topic=topic, image=image)
-            return redirect('topic_detail', pk=topic.pk)
+            return redirect('listofpost')
     else:
+
+
         form = forms.TopicForm()
     return render(request, 'create_topic.html', {'form': form})
 

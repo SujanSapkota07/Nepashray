@@ -1,41 +1,32 @@
-{% extends 'header.html' %}
-{% load static %}
-
-{% block test %}
-<h1>hello</h1>
-<div class="row" style="width: 100%;
-height: 500px; 
-overflow: hidden;">
-    {% for post in posts %}
-    <div class="col-lg-4" style="padding: 1%; height: 500px; ">
-        <div class="venue-item">
-            <div class="thumb">
-                <img src="{{image.image.url}}" alt="">
-            </div>
-            <div class="down-content">
-                <div class="left-content">
-                    <div class="main-white-button">
-                        <a href="viewpage.html">VIEW</a>
-                    </div>
-                </div>
-                <div class="right-content">
-                    
-                    <h4>{{post.title}}</h4>
-                    <div class="price">
-
-                        <!-- <span>posted<br>by <b>{{post.postedby}}</b></span> -->
-                    </div>
-
-                    <p>{{post.short_description}}</p>
-                    <ul>
-                        <li><i class="fa fa-thumbs-up"></i>250</li>
-                        <li><i class="fa fa-eye"></i>500</li>
-                    </ul>
-                    
-                </div> 
-            </div>
+{% include 'header.html' %} {% load static %}
+<div class="row">
+  {% for post in posts %}
+  <div class="col-lg-4">
+    <div class="venue-item">
+      {% for image in post.t_image_set.all %}
+      <div class="thumb" style="object-fit: cover;">
+        <img src="{{ image.image.url }}" alt="sujan" />
+      </div>
+      {% endfor %}
+      <div class="down-content">
+        <div class="left-content">
+          <div class="main-white-button">
+            <a href="viewpage.html">VIEW</a>
+          </div>
         </div>
+        <div class="right-content">
+          <h4>{{ post.title }}</h4>
+          <div class="price">
+            <span>posted<br />by <b> sujan sapkota</b></span>
+          </div>
+          <p>{{ post.long_description | slice:"100" }}</p>
+          <ul>
+            <li><i class="fa fa-thumbs-up"></i>250</li>
+            <li><i class="fa fa-eye"></i>500</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    {% endfor %}
+  </div>
+  {% endfor %}
 </div>
-{% endblock %}
