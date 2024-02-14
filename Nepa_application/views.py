@@ -67,3 +67,8 @@ def create_topic(request):
 
 def create(request):
     return render(request, 'create.html') # has to be added
+
+def listofpost(request):
+    # Retrieve all topics with related T_Image instances
+    posts = models.Topic.objects.prefetch_related('t_image_set').all()
+    return render(request, 'listofpost.html', {"posts": posts})

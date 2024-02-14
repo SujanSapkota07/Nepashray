@@ -144,7 +144,7 @@ def signin(request):
     return render(request, "auth/landingpage.html")
 
 
-# def signout(request):
-#     logout(request)
-#     messages.success(request, "Logged Out successfully.")
-#     return redirect('home')
+def signout(request):
+    logout(request)
+    messages.success(request, "Logged Out successfully.")
+    return redirect('index')

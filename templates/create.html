@@ -55,19 +55,18 @@
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo">CREATE <em>POST</em></a>
+                        <a href="#home" class="logo">CREATE <em>POST</em></a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li><a href="index.html" class="active">Home</a></li>
+                            <li><a href="{% url 'index' %}" class="active">Home</a></li>
                             <!-- <li><a href="#about">About Us</a></li> -->
                             <!-- need to change upper amazing venues to about us here and below later -->
 
                             <li><a href="#post">See Posts</a></li>
                             <!-- <li><a href="discovernew.html">Discover More</a></li> -->
 
-                            <li><a href="register/index.html">Register</a></li> 
-                            <li><a href="contactpage.html">Contact</a></li>
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
 
                             <!-- <li><a href="tickets.html">Tickets</a></li>  -->
                         </ul>        

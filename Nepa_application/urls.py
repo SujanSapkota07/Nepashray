@@ -12,6 +12,6 @@ urlpatterns = [
 
     path('create/', views.create, name = 'create'),
     path('createe/', views.create_topic, name='create_topic'),
-    # path('listofpost', views.listofpost, name='listofpost'),
+    path('listofpost/', views.listofpost, name='listofpost'),
 
 ]
