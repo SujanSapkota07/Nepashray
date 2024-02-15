@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Post</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            
+        }
+
+        .form-container {
+            border: 4px solid #b60f0f;
+            padding: 40px;
+            max-width: 600px;
+            margin: auto;
+            transition: border-width 0.3s, border-color 0.3s;
+            
+        }
+
+
+       
+        img{
+
+            object-fit: contain;
+        }
+
+
+
+
+
+
+
+
+
+
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+        }
+
+        button {
+            background-color: #bd051e;
+            color: white;
+            padding: 10px;
+            size: 50px;
+            border: none;
+            cursor: pointer;
+            border-radius: 30px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        button:hover {
+            background-color: #b7c40a;
+        }
+
+
+        .btcent{
+            text-align: center;
+        }
+
+        /* .checkbox-container {
+            margin-bottom: 16px;
+            border-radius: 100px;
+        }
+
+        .checkbox-container label {
+            display: block;
+            margin-bottom: 8px; */
+
+
+
+            .checkbox-container {
+        display:inline-block;
+        margin-bottom:8px ;
+    
+        align-items: center;
+    }
+
+    .checkbox-container label {
+        margin-bottom: 8px; 
+    }
+        
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+
+        <h2 style="align-items: center; text-align: center; color: #950505;" >NEW POST</h2>
+
+        <form action="/submit-post" method="post" enctype="multipart/form-data">
+            <label for="title"><b>~ Title:</b></label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="writing"><b>~ Writing Section:</b></label>
+            <textarea id="writing" name="writing" rows="8" required></textarea>
+
+            <label for="image"><b> Add Image:</b></label>
+            <input type="file" id="image" name="image" accept="image/*">
+
+            <label for="audio"> <b>Add Audio:</b></label>
+            <input type="file" id="audio" name="audio" accept="audio/*">
+
+            <label for="video"> <b>Add Video:</b></label>
+            <input type="file" id="video" name="video" accept="video/*">
+
+            <!-- <label for="socialMedia">Put Your Social Media Links:</label>
+            <input type="text" id="socialMedia" name="socialMedia"> -->
+
+            <div class="checkbox-container" style="border-top: 3px solid #bd051e;"><br>
+                <label><b>~ Select Genre:</b></label><br>
+                <!-- <input type="checkbox" id="category1" name="categories[]" value="category1"> -->
+                <label for="category1">(i)  Art & Culture</label>
+                <input type="checkbox" id="category1" name="categories[]" value="category1"><br>
+
+                
+                <label for="category2">(ii)  Lifestyle</label>
+                <input type="checkbox" id="category2" name="categories[]" value="category2"><br>
+
+                
+                <label for="category3">(iii)  Biodiversity</label>
+                <input type="checkbox" id="category3" name="categories[]" value="category3"><br>
+                <!-- Add more checkboxes as needed -->
+
+                
+                <label for="category4">(iv)  Music</label>
+                <input type="checkbox" id="category4" name="categories[]" value="category4"><br>
+
+                
+                <label for="category5">(v)  Street Culture</label>
+                <input type="checkbox" id="category5" name="categories[]" value="category5"><br>
+
+                
+                <label for="category6">(vi)  Food</label>
+                <input type="checkbox" id="category6" name="categories[]" value="category6"><br>
+
+                
+                <label for="category7">(vii)  History</label>
+                <input type="checkbox" id="category7" name="categories[]" value="category7">
+
+
+
+
+            </div><br><br>
+
+            <button type="submit" class="btcent">Submit Post</button>
+        </form>
+
+    </div>
+
+</body>
+</html>
