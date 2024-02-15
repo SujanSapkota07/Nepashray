@@ -1,0 +1,491 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Tooplate">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <title>NEPASHRAY</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/owl-carousel.css' %}">
+
+    <link rel="stylesheet" href="{% static 'assets/css/tooplate-artxibition.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+<!-- this later added -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400" rel="stylesheet" />
+    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet" />
+
+    <style>
+       .sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+      </style>
+
+    </head>
+    
+    <body>
+        
+    <!-- ***** Preloader Start ***** -->
+    <!-- <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>    
+    </div> -->
+    <!-- ***** Preloader End ***** -->
+    
+    <!-- ***** Pre HEader ***** -->
+    <!-- <div class="pre-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-6">
+                    <span>Namaste to Our StoryTeller/Seeker!</span>
+                </div>
+                <div class="col-lg-6 col-sm-6">
+                    <div class="text-button">
+                       <button class="contactbutton"> <a href="{% url 'contact' %}">Contact Now <i class="fa fa-arrow-right"></i></a></button>
+                       {% if user.is_authenticated %}
+                       <button class="contactbutton" style="margin-left: 10px;"> <a href="{% url 'signout' %}"">Log out <i class="fa fa-arrow-right"></i></a></button>
+                       {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="{% url 'index' %}" class="logo">NEP<em>ASHRAYA</em></a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <!-- <li><a href="{% url 'index' %}" class="active">Home</a></li>
+                            <li><a href="#about">About Us</a></li> -->
+                            <!-- need to change upper amazing venues to about us here and below later -->
+
+                            <!-- <li><a href="#latests">Explore Latests</a></li>
+                            <li><a href="{% url 'discover' %}">Watch Genres</a></li> -->
+                            {% if user.is_authenticated %}
+                            <button class="contactbutton" style="margin-left: 10px;"> <a href="{% url 'signout' %}"">Log out <i class="fa fa-arrow-right"></i></a></button>
+                            {% endif %}
+
+                            <!-- {% if user.is_authenticated %}
+                            <li><a href="{% url 'create' %}">Upload</a></li> -->
+                            <!-- <li>Upload</li> -->
+                        <!-- {% else %}
+                            <li><a href="{% url 'authregister' %}">Register</a></li>
+                        {% endif %} -->
+                            <!-- <li><a href="{% url 'authregister' %}">Register</a></li>  -->
+                            <!-- <li><a href="tickets.html">Tickets</a></li>  -->
+                        </ul>        
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div class="sidebar">
+        <a class="active" href="#home">Dashboard</a>
+        <a href="#news">Manage Users</a>
+        <a href="#contact">Post Metrics</a>
+        <a href="{% url 'signout' %}">Logout</a>
+      </div>
+      
+      <div class="content">
+        <h2><b>Hello {{username|upper}}</b></h2>
+        <p>Here the user's latest post and authority will be examined.</p>
+        <!-- <div class="container"> -->
+            <div class="container">
+                <div class="row">
+                  <div class="card text-white bg-primary col-md-3 d-flex" >
+                    <div class="card-header">Posts</div>
+                    <div class="card-body">
+                      <h3 class="card-title">209</h3>
+                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                    </div>
+                  </div>
+                  
+                  <div class="card text-white bg-secondary col-md-3 d-flex" >
+                    <div class="card-header">Shares</div>
+                    <div class="card-body">
+                      <h3 class="card-title">132</h3>
+                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                    </div>
+                  </div>
+                  <div class="card text-white bg-success col-md-3 d-flex" >
+                    <div class="card-header">Comments</div>
+                    <div class="card-body">
+                      <h3 class="card-title">311</h3>
+                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Post Title</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Shreyansi</td>
+                    <td>About the Basantapur History</td>
+                    <td>Art & Culture</td>
+                    <td><button type="button" class="btn btn-secondary">Post</button>
+                    <button type="button" class="btn btn-danger">Block</button></td>
+                  </tr>
+                  <tr>
+                    <td>Sujan</td>
+                    <td>Art in Style : Lalitpur</td>
+                    <td>Art & Culture</td>
+                    <td><button type="button" class="btn btn-secondary">Post</button>
+                    <button type="button" class="btn btn-danger">Block</button></td>
+                  </tr>
+                  <tr>
+                    <td>Sumitra</td>
+                    <td>Trials with wooden textures</td>
+                    <td>Art & Culture</td>
+                    <td><button type="button" class="btn btn-secondary">Post</button>
+                    <button type="button" class="btn btn-danger">Block</button></td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+            
+        
+
+              <!-- <div class="card-deck">
+                <div class="card">
+                  <img class="card-img-top" src="..." alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">210</h5>
+                    <p class="card-text">Posts</p>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                  </div>
+                </div>
+                <div class="card">
+                  <img class="card-img-top" src="..." alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                  </div>
+                </div>
+                <div class="card">
+                  <img class="card-img-top" src="..." alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                  </div>
+                </div>
+              </div> -->
+              
+            
+        <!-- </div> -->
+      </div>
+
+    <!-- <div class="show-events-carousel">
+        <div class="container">
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Post Title</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Shreyansi</td>
+                    <td>About the Basantapur History</td>
+                    <td>Art & Culture</td>
+                    <td><button type="button" class="btn btn-secondary">Post</button>
+                    <button type="button" class="btn btn-danger">Block</button></td>
+                  </tr>
+                  <tr>
+                    <td>Sujan</td>
+                    <td>About the Basantapur History</td>
+                    <td>Art & Culture</td>
+                    <td><button type="button" class="btn btn-secondary">Post</button>
+                    <button type="button" class="btn btn-danger">Block</button></td>
+                  </tr>
+                  <tr>
+                    <td>Sumitra</td>
+                    <td>About the Basantapur History</td>
+                    <td>Art & Culture</td>
+                    <td><button type="button" class="btn btn-secondary">Post</button>
+                    <button type="button" class="btn btn-danger">Block</button></td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+              
+            
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3 sidebar">
+            <h2>Admin Dashboard</h2>
+            <ul>
+              <li><a href="#">Dashboard</a></li>
+              <li><a href="#">Posts</a></li>
+              <li><a href="#">Categories</a></li>
+              <li><a href="#">Tags</a></li>
+              <li><a href="#">Users</a></li>
+              <li><a href="#">Settings</a></li>
+              <li><a href="#">Logout</a></li>
+            </ul>
+          </div>
+          <div class="col-md-9 main-content">
+            <h2>Dashboard</h2>
+            <p>Welcome, Super Admin!</p>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Total Posts</h5>
+                    <p class="card-text">100</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Total Categories</h5>
+                    <p class="card-text">10</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-4">
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Total Tags</h5>
+                    <p class="card-text">20</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Total Users</h5>
+                    <p class="card-text">50</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+    <!-- ***** er Area Start ***** -->
+    <!-- <div class="main-banner">
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="main-content">
+                        
+                        <h5 class="add-white">A Creative Space for Nepal's Finest Artifacts & Artisans</h5>
+                        <h2> STORIES | PROVINCES | CULTURE</h2>
+                        <div class="main-white-button">
+                            <input type="text" id="input-box" placeholder="Anything specific ?, Let us know the keyword"> -->
+                            <!-- <button>SEARCH</button> -->
+                           <!-- <a href="{% url 'search' %}">TAP  TO  SEARCH</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Main Banner Area End ***** -->
+
+    <!-- *** Owl Carousel Items ***-->
+
+
+    
+
+    
+    
+    <!-- *** About Us ***-->
+
+
+
+    <!-- *** Map ***
+    <div class="map-image">
+      
+        <img src="assets/images/street.jpg" alt="Map of Nepal">
+    </div>
+
+
+    <!- *** Venues & Tickets ***-->
+
+    <!-- latest postss nepashray -->
+
+           
+
+
+
+
+    <!-- *** Footer *** -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="address">
+                        <h4>OFFICE ADDRESS</h4>
+                        <span>Newroad, Kathmandu<br>Nepal.</span>
+                    </div>
+                </div>
+
+            
+               
+                <div class="col-lg-12">
+                    <div class="sub-footer">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="logo"><a href="{% url 'index' %}"><span>NEP<em>ASHRAYA</em></span></a></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="menu">
+                                    <ul>
+                                        <nav>
+                                            <li><a href="{% url 'index' %}" class="active">Home</a></li>
+                                            <li><a href="#about">About Us</a></li>
+                                            <!-- need to change upper amazing venues to about us here and below later -->
+                
+                                            <li><a href="#latests">Explore Latests</a></li>
+                                            <li><a href="{% url 'discover' %}">Discover More</a></li>
+                
+                                            <li><a href="{% url 'register' %}">Register</a></li> 
+                                        </nav>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- <div class="col-lg-3">
+                                <div class="social-links">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugins -->
+    <script src="assets/js/scrollreveal.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/imgfix.min.js"></script> 
+    <script src="assets/js/mixitup.js"></script> 
+    <script src="assets/js/accordions.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    
+    <!-- Global Init -->
+    <script src="assets/js/custom.js"></script>
+
+  </body>
+</html>
+
