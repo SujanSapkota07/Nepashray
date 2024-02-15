@@ -8,7 +8,9 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('discover/', views.discover, name='discover'),
     path('search/', views.search, name='search'),
-    path('province/', views.provience_clicked, name='province'),
+    
+    path('province/<str:province>/', views.provience_clicked, name='province'),
+    path('category/<str:category>/', views.category_clicked, name='category'),
 
     path('create/', views.create, name = 'create'),
     path('createe/', views.create_topic, name='create_topic'),

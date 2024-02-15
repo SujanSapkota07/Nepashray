@@ -18,6 +18,6 @@ class TopicForm(forms.ModelForm):
     # images = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
     class Meta:
         model = models.Topic
-        fields = ['title', 'short_description', 'long_description']
+        fields = ['title', 'long_description', 'category', 'province']
 
     

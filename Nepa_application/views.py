@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import provience
+from .models import province
 from . import models
 from django.contrib import messages
 from . import forms
-from django.contrib.auth import authenticate, login
+
 
 # Create your views here.
 
@@ -19,7 +19,14 @@ def register(request):
 
 
 def discover(request):
-    return render(request, 'discovernew.html')
+    categories = models.Category.objects.all()
+    print(categories)
+    return render(request, 'discovernew.html',{"categories": categories})
+
+def category_clicked(request, category=None):
+    categoryObj = models.Category.objects.get(name=category)
+    categoryTopic = categoryObj.topics.all()
+    return render(request, 'genre_landingpage.html', context={"posts":categoryTopic})
 
 
 def search(request):
@@ -27,13 +34,15 @@ def search(request):
 
 
 def index(request): # for landing page 
-    proviences = provience.objects.all()
+    provinces = province.objects.all()
     # context = {'provinces': proviences}
-    return render(request, 'index.html', {'provinces': proviences} )
+    return render(request, 'index.html', {'provinces': provinces} )
 
 
-def provience_clicked(request): 
-    return render(request, 'province_landingpage.html' )
+def provience_clicked(request, province=None): 
+    provinceObj = models.province.objects.get(name=province)
+    provinceTopic = provinceObj.topics.all()
+    return render(request, 'province_landingpage.html', context={"posts":provinceTopic})
 
 # this fuction will let user to send messages to us
 def contact_us(request):
@@ -55,15 +64,11 @@ def create_topic(request):
     if request.method == 'POST':
 
         form = forms.TopicForm(request.POST, request.FILES) 
-
         if form.is_valid():
-
             topic = form.save()
-           
             for image in request.FILES.getlist('images'):
-
                 models.T_Image.objects.create(topic=topic, image=image)
-            return redirect('listofpost')
+            return render(request, 'listofpost.html')
     else:
 
 

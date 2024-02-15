@@ -168,7 +168,7 @@
         <!-- the seven provinces listed // old coming events -->
         <div class="left-button">
             <div class="main-white-button">
-                <a href="discover.html">Watch Genres</a>
+                <a href="{% url 'discover' %}">Watch Genres</a>
             </div>
         </div>
 
@@ -179,7 +179,7 @@
                 <h1 class="add-white mb-3 justify-content-center"> || IMMERSE INTO THE RICHNESS OF OUR 7 PROVINCES ||</h1>
                 
                 <!-- single card start -->
-                <div class="col-lg-3 ml-5 mb-3">
+                <!-- <div class="col-lg-3 ml-5 mb-3">
                     <div class="event-item">
                         <div class="thumb">
                             <a href="province1.html"><img class="img-fit" size="20px" src="{% static 'assets/images/shrayimg1.jpg'%} " alt=""></a>
@@ -192,10 +192,27 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- single card start -->
+                {% for province in provinces %}
+                <div class="col-lg-3 ml-5 mb-3">
+                    <div class="event-item">
+                        <div class="thumb">
+                            <a href="{% url "province" province.name %}"><img class="img-fit" size="20px" src="{{province.image.url}}" alt=""></a>
+                        </div>
+                        <div class="down-content">
+                            <a href="{% url "province" province.name %}"><h4>{{province.name}} </h4></a>
+                            <ul>
+                                <li style="text-align: center;">{{province.description}}</li>
+                                <li><i class="fa fa-map-marker"></i> {{province.capital}} [Capital] </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="col-lg-3 ml-5">
+                {% endfor %}
+
+                <!-- <div class="col-lg-3 ml-5">
                     <div class="event-item">
                         <div class="thumb">
                             <a href="province2.html"><img class="img-fit" size="20px" src="{% static 'assets/images/shrayimg6.jpg'%} " alt=""></a>
@@ -280,7 +297,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 
             </div>
         </div>
