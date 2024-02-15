@@ -134,7 +134,7 @@ def signin(request):
           login(request, user)
           fname = user.first_name
           print(4)
-          return render(request, "index.html", {'fname': fname,'username':username})
+          return render(request, "auth/admin_index.html", {'fname': fname,'username':username})
        else:
           print(5)
           messages.error(request, "Bad credentials")
