@@ -148,3 +148,6 @@ def signout(request):
     logout(request)
     messages.success(request, "Logged Out successfully.")
     return redirect('index')
+
+def create_post(request):
+    return render(request, 'post_form.html')
