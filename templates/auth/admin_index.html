@@ -137,8 +137,11 @@ div.content {
                             <button class="contactbutton" style="margin-left: 10px;"> <a href="{% url 'signout' %}"">Log out <i class="fa fa-arrow-right"></i></a></button>
                             {% endif %}
 
-                            <!-- {% if user.is_authenticated %}
-                            <li><a href="{% url 'create' %}">Upload</a></li> -->
+                            <!-- {% if user.is_authenticated %} -->
+                            <!-- {% if user.is_authenticated and user.username != 'sujan' %}
+                            <li><a href="{% url 'create' %}">Upload</a></li>
+                            {% endif %} -->
+                            
                             <!-- <li>Upload</li> -->
                         <!-- {% else %}
                             <li><a href="{% url 'authregister' %}">Register</a></li>
@@ -159,11 +162,18 @@ div.content {
 
     <div class="sidebar">
         <a class="active" href="#home">Dashboard</a>
+        {% if user.is_authenticated and user.username == 'sujan' %}
         <a href="#news">Manage Users</a>
         <a href="#contact">Post Metrics</a>
+        {% elif user.is_authenticated and user.username != 'sujan' %}
+        <a href="{% url 'create_post' %}">Create a Post</a>
+        <a href="#news">Manage Posts</a>
+        <a href="#contact">View Comments</a>
+        {% endif %}
         <a href="{% url 'signout' %}">Logout</a>
       </div>
       
+      {% if user.is_authenticated and user.username == 'sujan' %}
       <div class="content">
         <h2><b>Hello {{username|upper}}</b></h2>
         <p>Here the user's latest post and authority will be examined.</p>
@@ -267,6 +277,117 @@ div.content {
             
         <!-- </div> -->
       </div>
+      {% elif user.is_authenticated and user.username != 'sujan' %}
+      <div class="content">
+        <h2><b>Hello {{username|upper}}</b></h2>
+        <p>Here the user's latest post and authority will be examined.</p>
+        <div class="card">
+          <h5 class="card-header">Create a New Post</h5>
+          <div class="card-body">
+            <h5 class="card-title">Start writing your post in just seconds</h5>
+            <p class="card-text">We are here to encourage your blogging experience!</p>
+            <a href="{% url 'create_post' %}" class="btn btn-primary">Lets Start</a>
+          </div>
+        </div>
+        <!-- <div class="container"> -->
+            <div class="container">
+                <div class="row">
+                  <div class="card text-white bg-primary col-md-3 d-flex" >
+                    <div class="card-header">My Posts</div>
+                    <div class="card-body">
+                      <h3 class="card-title">209</h3>
+                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                    </div>
+                  </div>
+                  
+                  <div class="card text-white bg-secondary col-md-3 d-flex" >
+                    <div class="card-header">My Shares</div>
+                    <div class="card-body">
+                      <h3 class="card-title">132</h3>
+                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                    </div>
+                  </div>
+                  <div class="card text-white bg-success col-md-3 d-flex" >
+                    <div class="card-header">My Comments</div>
+                    <div class="card-body">
+                      <h3 class="card-title">311</h3>
+                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <!-- <th scope="col">Username</th> -->
+                    <th scope="col">Post Title</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Created At</th>
+                    <!-- <th scope="col">Action</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <!-- <td>Shreyansi</td> -->
+                    <td>About the Basantapur History</td>
+                    <td>Art & Culture</td>
+                    <td>2024/09/10</td>
+                  </tr>
+                  <tr>
+                    <!-- <td>Shreyansi</td> -->
+                    <td>Art in Style : Lalitpur</td>
+                    <td>Art & Culture</td>
+                    <td>2024/09/10</td>
+                  </tr>
+                  <tr>
+                    <!-- <td>Shreyansi</td> -->
+                    <td>Trials with wooden textures</td>
+                    <td>Art & Culture</td>
+                    <td>2024/09/10</td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+            
+        
+
+              <!-- <div class="card-deck">
+                <div class="card">
+                  <img class="card-img-top" src="..." alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">210</h5>
+                    <p class="card-text">Posts</p>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                  </div>
+                </div>
+                <div class="card">
+                  <img class="card-img-top" src="..." alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                  </div>
+                </div>
+                <div class="card">
+                  <img class="card-img-top" src="..." alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                  </div>
+                </div>
+              </div> -->
+              
+            
+        <!-- </div> -->
+      </div>
+      {% endif %}
 
     <!-- <div class="show-events-carousel">
         <div class="container">
