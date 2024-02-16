@@ -55,7 +55,7 @@
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="#home" class="logo">CREATE <em>POST</em></a>
+                        <a href="{% url 'create_post' %}">CREATE NEW POST HERE</a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
@@ -96,7 +96,8 @@
                         <div class="main-white-button">
                             <!-- <input type="text" id="input-box" placeholder="Anything specific ?, Let us know the keyword"> -->
                             <!-- <button>SEARCH</button> -->
-                           <a href="{% url 'create_topic' %}">CREATE NEW POST HERE</a>
+<!--                            <a href="{% url 'create_topic' %}">CREATE NEW POST HERE</a> -->
+                          <a href="{% url 'create_post' %}">CREATE NEW POST HERE</a>
                         </div>
                     </div>
                 </div>
