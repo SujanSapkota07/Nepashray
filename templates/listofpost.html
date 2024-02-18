@@ -6,7 +6,7 @@
     <div class="venue-item">
       {% for image in post.t_image_set.all %}
       <div class="thumb" style="object-fit: cover;">
-        <img src="{{ image.image.url }}" alt="sujan" />
+        <img src="{{ image.image.url }}" alt="{{post.title}}" />
       </div>
       {% endfor %}
       <div class="down-content">
@@ -18,7 +18,7 @@
         <div class="right-content">
           <h4>{{ post.title }}</h4>
           <div class="price">
-            <span>posted<br />by <b> sujan sapkota</b></span>
+            <span>posted<br />by <b> {{posts.name}} </b></span>
           </div>
           <p>{{ post.long_description | slice:"100" }}</p>
           <ul>

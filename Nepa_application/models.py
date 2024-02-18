@@ -32,7 +32,7 @@ class Contact_us(models.Model):
 class Topic(models.Model):
     title = models.CharField(max_length=100)
     long_description = models.TextField()
-    category = models.ManyToManyField('Category', related_name='topics')
+    category = models.ManyToManyField("Category", related_name='topics')
     province = models.ForeignKey(province, on_delete=models.CASCADE, related_name='topics')
     post_date = models.DateTimeField(default=timezone.now)
     is_verified = models.BooleanField(default=False)

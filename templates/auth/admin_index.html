@@ -114,7 +114,7 @@
             <div class="card text-white bg-primary col-md-3 d-flex" >
                 <div class="card-header">Posts</div>
                 <div class="card-body">
-                  <h3 class="card-title">209</h3>
+                  <h3 class="card-title">{{number_of_total_posts}}</h3>
                 </div>
             </div>
             <div class="card text-white bg-secondary col-md-3 d-flex" >
@@ -187,7 +187,7 @@
           <div class="card text-white bg-primary col-md-3 d-flex" >
             <div class="card-header">My Posts</div>
             <div class="card-body">
-              <h3 class="card-title">209</h3>
+              <h3 class="card-title">{{number_of_total_posts}}</h3>
             </div>
           </div>
           <div class="card text-white bg-secondary col-md-3 d-flex" >
@@ -213,12 +213,17 @@
           </tr>
         </thead>
         <tbody>
+          {% for post in my_post %}
           <tr>
-            <td>About the Basantapur History</td>
-            <td>Art & Culture</td>
-            <td>2024/09/10</td>
+            <td>{{post.title}}</td>
+            <td>{% for category in categories %}
+              {{ category.name }}
+              {% if not forloop.last %}, {% endif %}
+            {% endfor %}</td>
+            <td>{{post.date_created}}</td>
           </tr>
-          <tr>
+          {% endfor %}
+          <!-- <tr>
             <td>Art in Style : Lalitpur</td>
             <td>Art & Culture</td>
             <td>2024/09/10</td>
@@ -227,7 +232,7 @@
             <td>Trials with wooden textures</td>
             <td>Art & Culture</td>
             <td>2024/09/10</td>
-          </tr>
+          </tr> -->
         </tbody>
     </table>
 </div>

@@ -27,8 +27,12 @@ def discover(request):
 def category_clicked(request, category=None):
     categoryObj = models.Category.objects.get(name=category)
     categoryTopic = categoryObj.topics.all()
-    return render(request, 'genre_landingpage.html', context={"posts":categoryTopic})
+    return render(request, 'listofpost.html', context={"posts":categoryTopic})
 
+def provience_clicked(request, province=None): 
+    provinceObj = models.province.objects.get(name=province)
+    provinceTopic = provinceObj.topics.all()
+    return render(request, 'listofpost.html', context={"posts":provinceTopic})
 
 def search(request):
     return render(request, 'discoverr.html')
@@ -42,10 +46,6 @@ def index(request): # for landing page
     return render(request, 'index.html', {'provinces': provinces, 'username':username} )
 
 
-def provience_clicked(request, province=None): 
-    provinceObj = models.province.objects.get(name=province)
-    provinceTopic = provinceObj.topics.all()
-    return render(request, 'province_landingpage.html', context={"posts":provinceTopic})
 
 # this fuction will let user to send messages to us
 def contact_us(request):
@@ -72,8 +72,9 @@ def create_topic(request):
         if form.is_valid():
             topic = form.save(commit=False)
             models.Topic.is_verified = False
-            topic.author = username
+            category_ids = request.POST.getlist('category')
             topic.save()
+            topic.category.add(*category_ids)
             for image in request.FILES.getlist('images'):
                 models.T_Image.objects.create(topic=topic, image=image)
             return redirect('listofpost')
@@ -88,17 +89,40 @@ def create_topic(request):
 def listofpost(request):
     # Retrieve all topics with related T_Image instances
     posts = models.Topic.objects.prefetch_related('t_image_set').all()
-    return render(request, 'listofpost.html', {"posts": posts})
+    context = {
+        "posts": posts,
+        }
+    return render(request, 'listofpost.html', context)
 
 
 @login_required
 def upload(request):
     contex = []
     username = request.user.username
-    unverified_posts = models.Topic.objects.filter(is_verified=False)
-    categories = models.Category.objects.all()
-    contex = {'unverified_posts': unverified_posts, 'username':username, 'categories':categories} # make changes here
-    return render(request, 'auth/admin_index.html', contex)
+    if request.user.is_authenticated and  request.user.is_staff:
+        unverified_posts = models.Topic.objects.filter(is_verified=False)
+        categories = models.Category.objects.all()
+        number_of_total_posts = models.Topic.objects.all().count()
+        context = {'unverified_posts': unverified_posts,
+                'username':username,
+                'categories':categories,
+                'number_of_total_posts':number_of_total_posts,
+                } 
+    if request.user.is_authenticated and not request.user.is_staff:
+        my_posts = models.Topic.objects.filter(author=username)
+        print(my_posts)
+        date_created = models.Topic.objects.filter(author=username).values('post_date')
+        print(date_created)
+        categories = models.Category.objects.filter(topics__in=my_posts)
+        print(categories)
+        number_of_total_posts = my_posts.count()
+        context = {'my_post': my_posts,
+                'username':username,
+                'categories':categories,
+                'number_of_total_posts':number_of_total_posts,
+                'date_created': date_created,
+                }
+    return render(request, 'auth/admin_index.html', context)
 
 # verification of the post
 def verify_post(request, topic_id=None):
