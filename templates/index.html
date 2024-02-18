@@ -51,7 +51,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-6">
+                    {% if username %}
+                    <span>Welcome, {{username|capfirst}}</span>
+                    {% else %}
                     <span>Namaste to Our StoryTeller/Seeker!</span>
+                    {% endif %}
                 </div>
                 <div class="col-lg-6 col-sm-6">
                     <div class="text-button">

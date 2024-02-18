@@ -35,8 +35,10 @@ def search(request):
 
 def index(request): # for landing page 
     provinces = province.objects.all()
-    # context = {'provinces': proviences}
-    return render(request, 'index.html', {'provinces': provinces} )
+    username = None
+    if request.user.is_authenticated:
+        username = request.user.username
+    return render(request, 'index.html', {'provinces': provinces, 'username':username} )
 
 
 def provience_clicked(request, province=None): 

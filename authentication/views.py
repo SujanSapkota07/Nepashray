@@ -56,6 +56,8 @@ def signup(request):
 
        myuser.save()
        print(1)
+
+       
        messages.success(request, "Your account has been successfully created! We have sent you a confirmation email, please confirm in order to activate your account")
 
        #Welcome email
@@ -150,4 +152,5 @@ def signout(request):
     return redirect('index')
 
 def create_post(request):
-    return render(request, 'post_form.html')
+    return render(request, 'post_form.html') # yeha post_form ko html file banauna parney
+
