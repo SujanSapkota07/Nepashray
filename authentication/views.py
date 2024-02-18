@@ -136,7 +136,7 @@ def signin(request):
           login(request, user)
           fname = user.first_name
           print(4)
-          return render(request, "auth/admin_index.html", {'fname': fname,'username':username})
+          return redirect("upload")
        else:
           print(5)
           messages.error(request, "Bad credentials")
@@ -151,6 +151,6 @@ def signout(request):
     messages.success(request, "Logged Out successfully.")
     return redirect('index')
 
-def create_post(request):
-    return render(request, 'post_form.html') # yeha post_form ko html file banauna parney
+# def create_post(request):
+#     return render(request, 'post_form.html') # yeha post_form ko html file banauna parney
 

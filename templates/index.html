@@ -89,7 +89,7 @@
 
 
                             {% if user.is_authenticated %}
-                            <li><a href="{% url 'create' %}">Upload</a></li>
+                            <li><a href="{% url 'upload' %}">Upload</a></li>
                             <!-- <li>Upload</li> -->
                         {% else %}
                             <li><a href="{% url 'authregister' %}">Register</a></li>
@@ -499,9 +499,14 @@
                                             <!-- need to change upper amazing venues to about us here and below later -->
                 
                                             <li><a href="#latests">Explore Latests</a></li>
-                                            <li><a href="{% url 'discover' %}">Discover More</a></li>
+                                            <li><a href="{% url 'discover' %}">Watch Genres</a></li>
                 
-                                            <li><a href="{% url 'register' %}">Register</a></li> 
+                                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'upload' %}">Upload</a></li>
+                            <!-- <li>Upload</li> -->
+                        {% else %}
+                            <li><a href="{% url 'authregister' %}">Register</a></li>
+                        {% endif %}
                                         </nav>
                                     </ul>
                                 </div>

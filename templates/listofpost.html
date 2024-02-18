@@ -1,6 +1,7 @@
 {% include 'header.html' %} {% load static %}
 <div class="row">
   {% for post in posts %}
+  {% if post.is_verified %}
   <div class="col-lg-4">
     <div class="venue-item">
       {% for image in post.t_image_set.all %}
@@ -28,5 +29,6 @@
       </div>
     </div>
   </div>
+  {% endif %}
   {% endfor %}
 </div>

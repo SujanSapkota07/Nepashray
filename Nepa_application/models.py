@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import EmailValidator
+from django.utils import timezone
 
 # Create your models here.
 
@@ -33,6 +34,9 @@ class Topic(models.Model):
     long_description = models.TextField()
     category = models.ManyToManyField('Category', related_name='topics')
     province = models.ForeignKey(province, on_delete=models.CASCADE, related_name='topics')
+    post_date = models.DateTimeField(default=timezone.now)
+    is_verified = models.BooleanField(default=False)
+    author = models.CharField(max_length=100, default="Anonymous")
 
     def __str__(self):
         return self.title
@@ -45,5 +49,6 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField(upload_to='category_images')
+
     def __str__(self):
         return self.name

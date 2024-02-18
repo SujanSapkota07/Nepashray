@@ -3,14 +3,71 @@
 <html>
 <head>
     <title>Create Topic</title>
+    <style>
+        /* add more css to make it look better */
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        /* adding padding to the form and text field*/
+        form {
+            padding: 50px;
+        }
+    </style>
 </head>
 <body>
-    <h2>Create Topic</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="file" name="images" multiple>
-        <button type="submit">Submit</button>
-    </form>
+    <h2>Hello {{username}}</h2>
+    <div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Create Topic</h2>
+            {{ form.as_p }}
+            <input type="file" name="images" multiple>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>

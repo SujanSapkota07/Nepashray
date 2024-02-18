@@ -12,8 +12,14 @@ urlpatterns = [
     path('province/<str:province>/', views.provience_clicked, name='province'),
     path('category/<str:category>/', views.category_clicked, name='category'),
 
-    path('create/', views.create, name = 'create'),
+    path('upload/', views.upload, name = 'upload'),
     path('createe/', views.create_topic, name='create_topic'),
     path('listofpost/', views.listofpost, name='listofpost'),
+
+     # URL pattern for verifying a post
+    path('verify_post/<int:topic_id>/', views.verify_post, name='verify_post'),
+    
+    # URL pattern for blocking a post
+    path('block_post/<int:topic_id>/', views.block_post, name='block_post'),
 
 ]
