@@ -65,12 +65,14 @@ def contact_us(request):
 @login_required
 def create_topic(request):
     username = None
+    # get the username of the user
     username = request.user.username
     if request.method == 'POST':
 
         form = forms.TopicForm(request.POST, request.FILES) 
         if form.is_valid():
             topic = form.save(commit=False)
+            topic.author = username
             models.Topic.is_verified = False
             category_ids = request.POST.getlist('category')
             topic.save()
@@ -102,7 +104,7 @@ def upload(request):
     if request.user.is_authenticated and  request.user.is_staff:
         unverified_posts = models.Topic.objects.filter(is_verified=False)
         categories = models.Category.objects.all()
-        number_of_total_posts = models.Topic.objects.all().count()
+        number_of_total_posts = models.Topic.objects.filter(is_verified=True).count()
         context = {'unverified_posts': unverified_posts,
                 'username':username,
                 'categories':categories,
@@ -110,11 +112,8 @@ def upload(request):
                 } 
     if request.user.is_authenticated and not request.user.is_staff:
         my_posts = models.Topic.objects.filter(author=username)
-        print(my_posts)
-        date_created = models.Topic.objects.filter(author=username).values('post_date')
-        print(date_created)
+        date_created = models.Topic.objects.filter(author=username).values('post_date') 
         categories = models.Category.objects.filter(topics__in=my_posts)
-        print(categories)
         number_of_total_posts = my_posts.count()
         context = {'my_post': my_posts,
                 'username':username,
