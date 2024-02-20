@@ -9,57 +9,58 @@
 </head>
 <body>
 
-    <form action="{% url 'contact' %}" method ="POST"> 
-{% csrf_token %}
+    <form id="contactForm" action="{% url 'contact' %}" method ="POST"> 
+        {% csrf_token %}
 
-<div class="background">
-    <div class="containerofcontact">
-      <div class="screen">
-        <div class="screen-header">
-          <div class="screen-header-left">
-            <div class="screen-header-button close"></div>
-            <div class="screen-header-button maximize"></div>
-            <div class="screen-header-button minimize"></div>
-          </div>
-          <div class="screen-header-right">
-            <div class="screen-header-ellipsis"></div>
-            <div class="screen-header-ellipsis"></div>
-            <div class="screen-header-ellipsis"></div>
-          </div>
-        </div>
-        <div class="screen-body">
-          <div class="screen-body-item left">
-            <div class="app-title">
-              <span >Yay,</span><br>
-              <span>we're super eager to receive your messages and feedbacks!</span>
-            </div><br>
-            <div class="app-contact">CONTACT INFO : www.nepashray@gmail.com</div>
-          </div>
-          <div class="screen-body-item">
-            <div class="app-form">
-              <div class="app-form-group">
-                <input class="app-form-control" name="name" placeholder="NAME" >
-              </div>
-              <div class="app-form-group">
-                <input class="app-form-control" name= "email"placeholder="EMAIL">
-              </div>
-              <div class="app-form-group">
-                <input class="app-form-control" name= "phone"placeholder="CONTACT NO">
-              </div>
-              <div class="app-form-group message">
-                <input class="app-form-control" name= "text_message"placeholder="MESSAGE">
-              </div>
-              <div class="app-form-group buttons">
-                <button class="app-form-button">CANCEL</button>
-                <button type = "submit"class="app-form-button">SEND</button>
-              </div>
+        <div class="background">
+            <div class="containerofcontact">
+            <div class="screen">
+                <div class="screen-header">
+                <div class="screen-header-left">
+                    <div class="screen-header-button close"></div>
+                    <div class="screen-header-button maximize"></div>
+                    <div class="screen-header-button minimize"></div>
+                </div>
+                <div class="screen-header-right">
+                    <div class="screen-header-ellipsis"></div>
+                    <div class="screen-header-ellipsis"></div>
+                    <div class="screen-header-ellipsis"></div>
+                </div>
+                </div>
+                <div class="screen-body">
+                <div class="screen-body-item left">
+                    <div class="app-title">
+                    <span >Yay,</span><br>
+                    <span>we're super eager to receive your messages and feedbacks!</span>
+                    </div><br>
+                    <div class="app-contact">CONTACT INFO : www.nepashray@gmail.com</div>
+                </div>
+                <div class="screen-body-item">
+                    <div class="app-form">
+                    <div class="app-form-group">
+                        <input class="app-form-control" name="name" placeholder="NAME" >
+                    </div>
+                    <div class="app-form-group">
+                        <input class="app-form-control" name= "email"placeholder="EMAIL">
+                    </div>
+                    <div class="app-form-group">
+                        <input class="app-form-control" name= "phone"placeholder="CONTACT NO">
+                    </div>
+                    <div class="app-form-group message">
+                        <input class="app-form-control" name= "text_message"placeholder="MESSAGE">
+                    </div>
+                    <div class="app-form-group buttons">
+                        <button id="cancelButton" class="app-form-button"><a href="{% url 'index' %}" style="text-decoration: none; color: inherit;">CANCEL</a></button>
+                        <button type="submit" class="app-form-button">SEND</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
             </div>
-          </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</form>
-  </body>
-  </html>
-  
+    </form>
+
+    
+</body>
+</html>

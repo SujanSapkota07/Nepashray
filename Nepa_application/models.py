@@ -40,6 +40,9 @@ class Topic(models.Model):
 
     def __str__(self):
         return self.title
+    
+    class meta:
+        ordering = ['-post_date']
 
 class T_Image(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)

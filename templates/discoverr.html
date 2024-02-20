@@ -24,13 +24,15 @@ background-image: url('{% static 'assets/images/HH.jpg' %}');">
   <header>
     <nav class="navbar">
       <!-- probs here january color white -->
-      <span class="logoofdiscover">
-        GENRES OF NEPASHRAY
+      <span  class="menu-links">
+        GENRES OF NEPASHRAY 
       </span>
       <!-- till here -->
       <ul class="menu-links">
         <li><a href="{% url 'index' %}">Home</a></li>
+        {% if not user.is_authenticated %}
         <li><a href="{% url 'register' %}">Register</a></li>
+        {% endif %}
       
         <li class="join-btn"><a href="{% url 'contact' %}">Contact</a></li>
         
@@ -51,9 +53,9 @@ background-image: url('{% static 'assets/images/HH.jpg' %}');">
   <section class="hero-section">
     <div class="content">
       <h1 style="color: rgb(255, 255, 255);"> Find The Feel That Resonates Your Taste </h1>
-      <form action="#" class="search-form">
-        <input type="text" placeholder="Search for your interest..." required>
-        <button class="material-symbols-outlined" type="sumbit">search</button>
+      <form action="#" method="get" class="search-form">
+        <input type="text" name="q" placeholder="Search for your interest..." required>
+        <button class="material-symbols-outlined"  type="sumbit">search</button>
       </form>
       <div class="popular-tags">
         Popular:

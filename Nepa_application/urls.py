@@ -26,4 +26,5 @@ urlpatterns = [
     path('manageuser/', views.manage_user, name='manage_user'),
     # url to delete a user
     path('delete/<int:user_id>/', views.delete_user, name='delete'),
+
 ]

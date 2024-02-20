@@ -25,6 +25,7 @@ def discover(request):
     categories = models.Category.objects.all()
     return render(request, 'discovernew.html',{"categories": categories})
 
+
 def category_clicked(request, category=None):
     categoryObj = models.Category.objects.get(name=category)
     categoryTopic = categoryObj.topics.all()

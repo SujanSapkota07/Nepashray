@@ -85,7 +85,7 @@
                             <!-- need to change upper amazing venues to about us here and below later -->
 
                             <li><a href="#latests">Explore Latests</a></li>
-                            <li><a href="{% url 'discover' %}">Watch Genres</a></li>
+                            <li><a href="{% url 'listofpost' %}">Watch</a></li>
 
 
                             {% if user.is_authenticated %}
@@ -506,7 +506,7 @@
                                             <!-- need to change upper amazing venues to about us here and below later -->
                 
                                             <li><a href="#latests">Explore Latests</a></li>
-                                            <li><a href="{% url 'discover' %}">Watch Genres</a></li>
+                                            <li><a href="{% url 'listofpost' %}">Watch </a></li>
                 
                                             {% if user.is_authenticated %}
                             <li><a href="{% url 'upload' %}">Upload</a></li>
