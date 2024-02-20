@@ -20,6 +20,7 @@ def register(request):
     return render(request, 'auth/landingpage.html')
 
 
+
 def discover(request):
     categories = models.Category.objects.all()
     return render(request, 'discovernew.html',{"categories": categories})
@@ -141,3 +142,20 @@ def block_post(request, topic_id=None):
     topic = get_object_or_404(models.Topic, pk=topic_id)
     topic.delete()
     return redirect('upload')# make changes here
+
+
+# this function will manage the user profile
+from django.contrib.auth.models import User
+
+def manage_user(request):
+    users = User.objects.filter(is_staff=False)
+    context = {
+        "users": users,
+    }
+
+    return render(request, 'manage_user.html', context)
+
+def delete_user(request, user_id=None):
+    user = get_object_or_404(User, pk=user_id)
+    user.delete()
+    return redirect('manage_user')

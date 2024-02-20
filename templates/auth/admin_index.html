@@ -96,8 +96,7 @@
         });
     </script>
     {% if user.is_authenticated and user.is_staff %}
-    <a href="#news">Manage Users</a>
-    <a href="#contact">Post Metrics</a>
+    <a href="{% url 'manage_user'  %}">Manage Users</a>
     <a href="{% url 'create_post' %}">Create a Post</a>
     {% elif user.is_authenticated and not user.is_staff %}
     <a href="{% url 'create_post' %}">Create a Post</a>
