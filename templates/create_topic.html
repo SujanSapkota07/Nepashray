@@ -4,8 +4,9 @@
 <head>
     <title>Create Topic</title>
     <style>
-        /* add more css to make it look better */
+        /* Retain existing CSS and add more styles */
 
+        /* Additional styles for form */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -58,15 +59,16 @@
         }
     </style>
 </head>
-<body>
-    <h2>Hello {{username}}</h2>
+<body style="background: linear-gradient(135deg, #6e81a4, #cd7a7a);">
+
+    <h2 style="margin-top: 100px;">Hello {{ username }}</h2>
     <div>
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" style="margin-top: 50px;">
             {% csrf_token %}
-            <h2>Create Topic</h2>
+            <h2 style="margin-bottom: 20px; text-align: center;">Create Topic</h2>
             {{ form.as_p }}
-            <input type="file" name="images" multiple>
-            <button type="submit">Submit</button>
+            <input type="file" name="images" multiple style="margin-bottom: 20px; width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 3px;">
+            <button type="submit" style="background-color: #4CAF50; color: #fff; padding: 10px 20px; border: none; border-radius: 3px; cursor: pointer; width: 100%;">Submit</button>
         </form>
     </div>
 </body>

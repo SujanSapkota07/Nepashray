@@ -98,13 +98,19 @@
     {% if user.is_authenticated and user.is_staff %}
     <a href="{% url 'manage_user'  %}">Manage Users</a>
     <a href="{% url 'create_post' %}">Create a Post</a>
+
+
+
     {% elif user.is_authenticated and not user.is_staff %}
     <a href="{% url 'create_post' %}">Create a Post</a>
-    <a href="#news">Manage Posts</a>
-    <a href="#contact">View Comments</a>
+
+
     {% endif %}
     <a href="{% url 'signout' %}">Logout</a>
 </div>
+
+
+
 {% if user.is_authenticated and user.is_staff %}
 <div class="content">
     <h2><b>Hello {{username|upper}}</b></h2>
@@ -209,7 +215,7 @@
           <tr>
             <th scope="col">Post Title</th>
             <th scope="col">Genre</th>
-            <th scope="col">Created At</th>
+            <th scope="col">Edit</th>
           </tr>
         </thead>
         <tbody>
@@ -220,7 +226,8 @@
               {{ category.name }}
               {% if not forloop.last %}, {% endif %}
             {% endfor %}</td>
-            <td>{{post.date_created}}</td>
+            <td><button class="btn btn-primary" style="margin: 10px;">Edit</button><button class="btn btn-primary"">delete</button></td>
+
           </tr>
           {% endfor %}
           <!-- <tr>
