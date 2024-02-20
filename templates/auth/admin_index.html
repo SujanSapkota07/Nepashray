@@ -153,10 +153,10 @@
           {% for post in unverified_posts %}
           <tr>
             <td>{{post.author}}</td>
-            <td>{{post.title}}</td>
+            <td>{{post.title | slice:50 }}</td>
             <td>
-              {% for category in categories %}
-                {{ category.name }}
+              {% for category in post.category.all %}
+                {{ category.name }} 
                 {% if not forloop.last %}, {% endif %}
               {% endfor %}
             </td>
@@ -239,9 +239,9 @@
         <tbody>
           {% for post in my_post %}
           <tr>
-            <td>{{post.title}}</td>
-            <td>{% for category in categories %}
-              {{ category.name }}
+            <td>{{post.title | slice:50}}</td>
+            <td>{% for category in post.category.all %}
+              {{ category.name }} 
               {% if not forloop.last %}, {% endif %}
             {% endfor %}</td>
             <td><form action="{% url 'block_post' post.id %}" method="post">

@@ -15,12 +15,10 @@
             <a href="viewpage.html">VIEW</a>
           </div>
         </div>
-        <div class="right-content">
-          <h4>{{ post.title }}</h4>
-          <div class="price">
-            <span>posted<br />by <b> Sujan </b></span>
-          </div>
-          <p>{{ post.long_description | slice:"100" }}</p>
+        <div class="right-content" style="height: 350px;">
+          <h4>{{ post.title| slice:50 }}</h4>
+          <!-- posted by can be added here later on -->
+          <p>{{ post.long_description | slice:"200" }}</p>
           <ul>
             <li><i class="fa fa-thumbs-up"></i>250</li>
             <li><i class="fa fa-eye"></i>500</li>
