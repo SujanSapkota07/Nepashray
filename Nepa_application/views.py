@@ -85,6 +85,7 @@ def create_topic(request):
     return render(request, 'create_topic.html', {'form': form, 'username':username})
 
 
+# this code is removed after dashboard is created
 # def create(request):
 #     return render(request, 'create.html') # has to be added
 
