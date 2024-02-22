@@ -3,13 +3,13 @@
   {% for post in posts %}
   {% if post.is_verified %}
   <div class="col-lg-4">
-    <div class="venue-item">
+    <div class="venue-item" style="margin-bottom: 30px;">
       {% for image in post.t_image_set.all %}
-      <div class="thumb" style="object-fit: cover;">
+      <div class="thumb" style="object-fit: cover; height: 350px;">
         <img src="{{ image.image.url }}" alt="{{post.title}}" />
       </div>
       {% endfor %}
-      <div class="down-content">
+      <div class="down-content"style="height: 450px;">
         <div class="left-content">
           <div class="main-white-button">
             <a href="viewpage.html">VIEW</a>
@@ -17,8 +17,10 @@
         </div>
         <div class="right-content" style="height: 350px;">
           <h4>{{ post.title| slice:50 }}</h4>
-          <!-- posted by can be added here later on -->
-          <p>{{ post.long_description | slice:"200" }}</p>
+          <div class="price">
+            <span>posted<br>by <b> {{post.author}}</b></span>
+        </div>
+          <p style="margin-top: 0px;">{{ post.long_description | slice:"200" }}</p>
           <ul>
             <li><i class="fa fa-thumbs-up"></i>250</li>
             <li><i class="fa fa-eye"></i>500</li>

@@ -76,12 +76,12 @@
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li><a href="{% url 'index' %}" class="active">Home</a></li>
+                            <li><a href="{% url 'index' %}">Home</a></li>
                             <li><a href="#about">About Us</a></li>
                             <!-- need to change upper amazing venues to about us here and below later -->
 
                             <li><a href="#latests">Explore Latests</a></li>
-                            <li><a href="{% url 'discover' %}">Watch Genres</a></li>
+                            <li><a href="{% url 'discover' %}">Watch</a></li>
 
 
                             {% if user.is_authenticated %}
