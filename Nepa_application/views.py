@@ -160,3 +160,16 @@ def delete_user(request, user_id=None):
     user = get_object_or_404(User, pk=user_id)
     user.delete()
     return redirect('manage_user')
+
+
+#detailed view of the post
+def detailed_view(request, topic_id=None):
+    topic = get_object_or_404(models.Topic, pk=topic_id)
+    images = models.T_Image.objects.filter(topic=topic)
+    posts = models.Topic.objects.prefetch_related('t_image_set').all()
+    context = {
+        "topic": topic,
+        "images": images,
+        "posts": posts,
+    }
+    return render(request, 'detailed_view.html', context)

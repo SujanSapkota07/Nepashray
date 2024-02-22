@@ -1,0 +1,423 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Tooplate">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+  <title>SkateBoarders of Nepal</title>
+
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/owl-carousel.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/tooplate-artxibition.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400" rel="stylesheet" />
+  <link href="{% static 'css/main.css' %}" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'assets/css/blog.css' %}">
+
+<style>
+    @keyframes flyToPost {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-100px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+}
+
+@keyframes appearAtPost {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message {
+  padding: 10px 15px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.post-box {
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+
+</style>
+</head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Pre HEader ***** -->
+  <!-- <div class="pre-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-6">
+                    <span> LETS EXPLORE! </span>
+                </div>
+                <div class="col-lg-6 col-sm-6">
+                    <div class="text-button">
+                       <button class="contactbutton"> <a href="feedback.html">Feedbacks <i class="fa fa-arrow-right"></i></a></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+
+          <!-- start experiment -->
+
+          <!-- <nav class="navbar">
+                        <div class="dropdown">
+                          <button class="dropbtn">Dropdown</button>
+                          <div class="dropdown-content">
+                            <a href="#">Option 1</a>
+                            <a href="#">Option 2</a>
+                          </div>
+                        </div>
+                      </nav> -->
+
+
+          <!-- end experiment -->
+          <!-- <nav class="main-nav"> -->
+          <!-- ***** Logo Start ***** -->
+          <!-- <a href="index.html" class="logo">SKATEBOARDERS | <em>  By Ronish  Dahal</em></a> -->
+          <!-- ***** Logo End ***** -->
+          <!-- ***** Menu Start ***** -->
+          <!-- <ul class="nav">
+                            <li><a href="index.html">Home</a></li> -->
+          <!-- <li><a href="#about">About Us</a></li> -->
+          <!-- need to change upper amazing venues to about us here and below later -->
+
+          <!-- <li><a href="#latests">Explore Latests</a></li> -->
+          <!-- <li ><a href="about.html">About</a></li> -->
+
+          <!-- <div class="dropdown">
+                                <button class="dropbtn">Notions</button>
+                                <div class="dropdown-content">
+                                  <a href="musings.html">Musings</a>
+                                  <a href="#">Stories Of People</a>
+                                </div>
+                            </div> -->
+
+          <!-- <li ><a href="#about">Notions</a></li> -->
+          <!-- <li ><a href="#films">Films</a></li>
+                            <li ><a href="#about">Poems</a></li> -->
+          <!-- <li ><a href="#about">Interstellar</a></li> -->
+          <!-- <li ><a href="#about">Articles</a></li>
+                            <li ><a href="#about">Stories Of People</a></li> -->
+          <!-- <li ><a href="#about">About</a></li> -->
+          <!-- <li ><a href="#newsletter">Subscribe Newsletter</a></li> -->
+
+
+
+          <!-- <li><a href="register/index.html">Register</a></li>  -->
+          <!-- <li><a href="tickets.html">Tickets</a></li>  -->
+          <!-- </ul>         -->
+          <!-- <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a> -->
+          <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <!-- ***** er Area Start ***** -->
+
+  <!-- <div class="main-banner" style="background-image: url(assets/images/skate.jpg) ;>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="main-content" > -->
+  <!-- <h5 class="add-white">{ Visuals & Thoughts Curated By Shreyansi }</h5> -->
+  <!-- <h2>SKATEBOARDERS OF NEPAL</h2>
+                        <h3 class="add-white"> covered by Ronish Dahal</h3> -->
+  <!-- <div class="main-white-button"> -->
+  <!-- <input type="text" id="input-box" placeholder="Anything specific ?, Let us know the keyword"> -->
+  <!-- <button>SEARCH</button> -->
+  <!-- <a href="discoverr.html">Witness Stories</a>
+                        </div> -->
+  <!-- </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+  <!-- ***** Main Banner Area End ***** -->
+  <!-- <br><br> -->
+
+  <!-- <h1 style="text-align: center;" > { FILMS }</h1> -->
+  <!-- <br><br><br> -->
+
+
+  <!-- BLOG 1 START -->
+
+  <div class="container">
+    <header>
+      <h3 class="heading-1">{{topic.title}} :</h3>
+      <h3> </h3>
+      <div class="sub-heading">
+
+        <p>Covered by {{topic.author}}, at <span>{{topic.post_date}}</span></p>
+        <p class="importent" style="color: rgb(147, 34, 34);">
+            {% for category in topic.category.all %}
+                {{ category.name }} 
+                {% if not forloop.last %}, {% endif %}
+              {% endfor %}
+        </p>
+
+
+
+      </div>
+    </header>
+
+    <div class="main">
+      <div class="home">
+        <div class="left">
+          <!-- <img src="{% static 'assets/images/skate.jpg' %}" class="home-img" alt="Paper photo" style="height: 30%; width: 40%;"> -->
+          {%if images%}
+            {% for image in images %}
+          <!-- <div class="thumb" style="object-fit: cover; height: 350px;"> -->
+            <img src="{{ image.image.url }}" alt="{{post.title}}" style="height: 30%; width: 40%;" />
+          <!-- </div> -->
+          {% endfor %}
+            {% endif %}
+          <!-- start -->
+          <!-- 
+              < video width="320" height="240" controls>
+    < source src="assets/images/film1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  < /video> -->
+
+
+          <!-- end -->
+
+          <!-- <h2 class="heading-2">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit cupiditate possimus.
+              </h2> -->
+        </div>
+
+        <!-- <div class="right">
+              <h3 class="heading-3">latest news</h3>
+              <div class="lists">
+                <div class="list">
+                  <img src="img/list-img-1.jpg" alt="photo 1">
+                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, veritatis!</p>
+                </div>
+    
+                <div class="list">
+                  <img src="img/list-img-2.jpg" alt="photo 2">
+                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, veritatis!</p>
+                </div>
+    
+                <div class="list">
+                  <img src="img/list-img-3.jpg" alt="photo 3">
+                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, veritatis!</p>
+                </div>
+    
+                <div class="list">
+                  <img src="img/list-img-4.jpg" alt="photo 4">
+                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, veritatis!</p>
+                </div>
+              </div> -->
+        <!-- </div> -->
+      </div>
+      <br>
+      <article>
+        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos suscipit labore nihil voluptatum recusandae facere dicta veritatis iusto tempore, debitis officia qui nostrum repellendus autem numquam obcaecati sunt itaque in repudiandae expedita omnis saepe modi explicabo error! Sunt quaerat vitae omnis eaque culpa nihil sequi velit ullam fugiat, cupiditate atque quasi eum obcaecati, cumque officiis iure ipsam! Inventore voluptate dignissimos nemo! In exercitationem rerum sunt quo maxime consequatur ab accusamus explicabo voluptatem ratione. Eveniet hic, quibusdam repellendus illum quas provident corrupti dolores assumenda quis explicabo rerum reiciendis, tempore expedita iure ab numquam, facilis officia pariatur veritatis iste mollitia quam neque.</p>
+    
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente sint assumenda, alias blanditiis tempora quae, ea necessitatibus magnam velit culpa expedita optio voluptatem. Ad tenetur iure quisquam inventore! In sunt error quis magni quibusdam quos alias id odio eius eum, nostrum odit voluptates iste delectus harum labore nulla est quo?</p>
+    
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam aliquid molestiae, dolore cupiditate iusto cumque et sit praesentium magni fuga! Saepe neque rerum, illo possimus quasi ipsum nostrum sapiente sequi harum asperiores unde pariatur officia magni tempore, ipsa molestias odit eligendi aspernatur sunt soluta dolores suscipit? Modi consectetur porro similique. Eaque magnam quae doloribus voluptates pariatur nulla beatae non tempore nisi, explicabo sequi. Quisquam blanditiis aliquam optio culpa! Placeat fugiat a aliquid fuga accusamus non minus reiciendis quia delectus! Maxime, facere laborum, reprehenderit aut obcaecati cumque cupiditate quam a ex consectetur velit ipsa? Repellat dolor voluptate esse, placeat eius veniam quae atque sapiente sunt autem. Quod ea ducimus illo voluptatum eveniet in assumenda voluptates veritatis numquam magnam consequuntur sunt explicabo, harum dolorum nostrum laborum fugiat velit! Perferendis consectetur totam voluptatem commodi sapiente quas? Modi voluptas laborum officia atque consequuntur quos ipsum incidunt vero corrupti fuga maiores, enim at ex dolores!</p> -->
+        <p>
+         {{topic.long_description | safe}}
+        </p>
+
+        <!-- Like, Comment, Share, Report Section -->
+        <div class="container mt-5">
+            <div class="row">
+              <div class="col-md-6 offset-md-3">
+                <div class="d-flex justify-content-start align-items-center mb-4">
+                  <!-- Like Button -->
+                  <button class="btn btn-outline-primary mr-4" onclick="likePost()">Like</button>
+          
+                  <!-- Share Button -->
+                  <button class="btn btn-outline-info mr-4" onclick="sharePost()">Share</button>
+          
+                  <!-- Report Button -->
+                  <button class="btn btn-outline-danger" onclick="reportPost()">Report</button>
+                </div>
+                <div>
+                  <textarea id="commentInput" class="form-control mb-3" rows="3" placeholder="Write a comment..."></textarea>
+                  <button class="btn btn-outline-success btn-block" onclick="submitComment()">Comment</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="postBox" class="post-box d-none">
+            <div id="message" class="message"></div>
+          </div>
+          
+          
+
+        <!-- JavaScript for Interaction -->
+        <script>
+          function likePost() {
+            // Implement your like functionality here
+            alert('Post Liked!');
+          }
+
+          function postComment() {
+            // Implement your comment functionality here
+            let comment = document.getElementById('commentInput').value;
+            alert('Comment Posted: ' + comment);
+          }
+
+          function sharePost() {
+            // Implement your share functionality here
+            alert('Post Shared!');
+          }
+
+          function reportPost() {
+            // Implement your report functionality here
+            alert('Post Reported!');
+          }
+        </script>
+
+
+
+
+
+
+
+
+
+      </article>
+    </div>
+  </div>
+
+  <!-- <blockquote>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, perferendis nisi. Nisi, obcaecati sed. Doloremque omnis minima esse ullam cupiditate sint accusantium, itaque temporibus delectus commodi quidem atque id aut, nam, dolorum eligendi impedit. Porro labore dolore et accusamus, ea alias omnis eveniet dolor voluptate veritatis. Nisi assumenda perspiciatis facilis tenetur a ducimus atque dolorum. Non maiores porro minima incidunt quod deserunt ullam id error veniam debitis! Quia, nulla aspernatur.
+      </blockquote> -->
+
+  <br>
+  <br>
+
+  <br>
+
+
+  <!-- <div class="cards">
+        <div class="card">
+          <h4 class="heading-4">Title</h4>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis inventore consectetur eveniet assumenda, distinctio vero delectus. Dicta temporibus error rerum quas esse incidunt. Pariatur ea voluptatibus vitae distinctio cupiditate inventore!</p>
+        </div>
+    
+        <div class="card">
+          <h4 class="heading-4">Title</h4>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores voluptate ullam exercitationem, optio doloribus, eius possimus modi odio esse nobis earum cumque quia perferendis quo. Distinctio ullam libero provident atque excepturi cupiditate, autem commodi tempora sed, consequuntur dolore corrupti reprehenderit.</p>
+        </div>
+    
+        <div class="card">
+          <h4 class="heading-4">Title</h4>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam suscipit corrupti consequuntur nostrum illum alias accusantium sit magni. Eaque, libero soluta nam vitae sequi, sapiente quis, laboriosam numquam commodi aperiam vero. Voluptates libero delectus tenetur, quia ipsum magnam cumque numquam reiciendis. Alias architecto sit praesentium sapiente pariatur quas error fugiat?</p>
+        </div>
+      </div> -->
+  <!-- BLOG1 END -->
+
+
+
+
+<script>
+   function submitComment() {
+  var comment = document.getElementById('commentInput').value.trim();
+  if (comment !== '') {
+    var message = document.getElementById('message');
+    message.textContent = comment;
+    message.style.animation = 'flyToPost 1s forwards';
+
+    setTimeout(function() {
+      var postBox = document.getElementById('postBox');
+      postBox.classList.remove('d-none');
+      message.style.animation = 'appearAtPost 1s forwards';
+    }, 500);
+    setTimeout(function() {
+  message.style.animation = 'none'; // Disable animation
+  message.style.opacity = '0'; // Hide the message
+  setTimeout(function() {
+    postBox.classList.add('d-none'); // Hide the post box
+  }, 1000); // Wait for the message to fade out before hiding the post box
+}, 5000); 
+
+    document.getElementById('commentInput').value = ''; // Clear the comment input
+  }
+}
+
+
+</script>
+
+  <!-- jQuery -->
+  <script src="{% static 'assets/js/jquery-2.1.0.min.js' %}"></script>
+
+  <!-- Bootstrap -->
+  <script src="{% static 'assets/js/popper.js' %}"></script>
+  <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+  <!-- Plugins -->
+  <script src="{% static 'assets/js/owl-carousel.js' %}"></script>
+  <script src="{% static 'assets/js/scrollreveal.min.js' %}"></script>
+  <script src="{% static 'assets/js/waypoints.min.js' %}"></script>
+  <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+  <script src="{% static 'assets/js/imgfix.min.js' %}"></script>
+
+  <!-- Global Init -->
+  <script src="{% static 'assets/js/custom.js' %}"></script>
+  <script src="{% static 'assets/js/blog.js' %}"></script>
+
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

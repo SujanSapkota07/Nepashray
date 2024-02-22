@@ -27,4 +27,7 @@ urlpatterns = [
     # url to delete a user
     path('delete/<int:user_id>/', views.delete_user, name='delete'),
 
+    #detailed view of a document
+    path('detailed_view/<int:topic_id>/', views.detailed_view, name= 'detailed_view'),
+
 ]
