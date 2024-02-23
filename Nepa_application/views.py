@@ -1,3 +1,5 @@
+
+from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -20,6 +22,17 @@ from django.shortcuts import get_object_or_404
 
 def register(request):
     return render(request, 'auth/landingpage.html')
+
+
+
+def get_total_comments_for_user(username):
+    # Get the user object by username
+    user = User.objects.get(username=username)
+
+    # Now you can use this user object to retrieve the total comments
+    total_comments = models.Comment.objects.filter(author=user).count()
+
+    return total_comments
 
 
 
@@ -102,6 +115,7 @@ def listofpost(request):
     return render(request, 'listofpost.html', context)
 
 
+
 @login_required
 def upload(request):
     contex = []
@@ -110,21 +124,28 @@ def upload(request):
         unverified_posts = models.Topic.objects.filter(is_verified=False)
         categories = models.Category.objects.all()
         number_of_total_posts = models.Topic.objects.filter(is_verified=True).count()
+        total_comments = get_total_comments_for_user(username)
+
+
         context = {'unverified_posts': unverified_posts,
                 'username':username,
                 'categories':categories,
                 'number_of_total_posts':number_of_total_posts,
+                'number':total_comments,
+
                 } 
     if request.user.is_authenticated and not request.user.is_staff:
         my_posts = models.Topic.objects.filter(author=username)
         date_created = models.Topic.objects.filter(author=username).values('post_date') 
         categories = models.Category.objects.filter(topics__in=my_posts)
         number_of_total_posts = my_posts.count()
+        total_comments = get_total_comments_for_user(username)
         context = {'my_post': my_posts,
                 'username':username,
                 'categories':categories,
                 'number_of_total_posts':number_of_total_posts,
                 'date_created': date_created,
+                'number':total_comments,
                 }
     return render(request, 'auth/admin_index.html', context)
 
@@ -147,13 +168,14 @@ def block_post(request, topic_id=None):
     return redirect('upload')# make changes here
 
 
-# this function will manage the user profile
-from django.contrib.auth.models import User
+
 
 def manage_user(request):
     users = User.objects.filter(is_staff=False)
+    number=get_total_comments_for_user(users)
     context = {
         "users": users,
+        "number": number,
     }
 
     return render(request, 'manage_user.html', context)
