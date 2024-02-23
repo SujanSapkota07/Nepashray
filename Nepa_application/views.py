@@ -1,5 +1,6 @@
-from django.http import JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from .models import province
 from . import models
 from django.contrib import messages
@@ -164,12 +165,14 @@ def delete_user(request, user_id=None):
 
 
 #detailed view of the post
+@login_required(login_url='authregister')
 def detailed_view(request, topic_id=None):
     topic = get_object_or_404(models.Topic, pk=topic_id)
     images = models.T_Image.objects.filter(topic=topic)
     user = request.user.username
     posts = models.Topic.objects.prefetch_related('t_image_set').all()
     likes = topic.likes.count()
+    comments = models.Comment.objects.filter(post=topic)
 
     context = {
         "topic": topic,
@@ -177,6 +180,7 @@ def detailed_view(request, topic_id=None):
         "posts": posts,
         "user": user,
         "likes": likes,
+        "comments": comments,
     }
     return render(request, 'detailed_view.html', context)
 
@@ -207,6 +211,22 @@ def report (request, topic_id=None):
             return redirect('listofpost')
     return redirect('detailed_view', topic_id=topic_id)
 
+
+
+@login_required
+def like_post(request, post_id):
+    post = get_object_or_404(models.Topic, pk=post_id)
+    post.likes.add(request.user)
+    return redirect('detailed_view', post_id=post_id)
+
+@login_required
+def unlike_post(request, post_id):
+    post = get_object_or_404(models.Topic, pk=post_id)
+    post.likes.remove(request.user)
+    return redirect('detailed_view', post_id=post_id)
+
+
+
 # #like the post
 # def like_post(request, topic_id=None):
 #     print("-----------like added-----------")
@@ -225,3 +245,18 @@ def report (request, topic_id=None):
 #     print("-------------like removed-------------")
 #     # like_count = topic.likes.count()
 #     return render('detailed_view')
+
+
+
+@login_required(login_url="signin")
+def add_comment(request, id=None):
+   if request.method == "POST":
+       try:
+           content = request.POST.get("comment-content")
+           post = models.Topic.objects.get(id=id)
+           models.Comment.objects.create(author=request.user, content=content, post=post)
+           post.commentCount += 1
+           post.save()
+       except Exception as e:
+           return HttpResponse(e)
+   return HttpResponseRedirect(reverse("detailed_view", args=[id]))

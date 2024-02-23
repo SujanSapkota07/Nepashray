@@ -39,6 +39,7 @@ class Topic(models.Model):
     author = models.CharField(max_length=100, default="Anonymous")
     likes = models.ManyToManyField(User, related_name='topic', blank=True)
     report = models.IntegerField(User, default=0)
+    commentCount = models.IntegerField(default=0, null=True, blank=True)
 
 
     def __str__(self):
@@ -68,3 +69,18 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+class Comment(models.Model):
+   author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="commenter")
+   content = models.TextField()
+   post = models.ForeignKey(Topic, on_delete=models.CASCADE, default=None, null=True, blank=True
+   )
+   postedOn = models.DateTimeField(auto_now=True, blank=True)
+
+
+   class Meta:
+       ordering = ["-postedOn"]
+
+
+   def __str__(self):
+       return f"{self.content}"
