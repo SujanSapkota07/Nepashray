@@ -30,4 +30,10 @@ urlpatterns = [
     #detailed view of a document
     path('detailed_view/<int:topic_id>/', views.detailed_view, name= 'detailed_view'),
 
-]
+    #report the post
+    path('report/<int:topic_id>/', views.report, name='report'),
+
+    #like the post
+#     path('detailed_view/liked/<int:topic_id>/', views.like_post, name='liked'),
+#     path('detailed_view/unliked/<int:topic_id>/', views.unlike_post, name='unliked'),
+    ]

@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from .models import province
 from . import models
@@ -166,10 +167,61 @@ def delete_user(request, user_id=None):
 def detailed_view(request, topic_id=None):
     topic = get_object_or_404(models.Topic, pk=topic_id)
     images = models.T_Image.objects.filter(topic=topic)
+    user = request.user.username
     posts = models.Topic.objects.prefetch_related('t_image_set').all()
+    likes = topic.likes.count()
+
     context = {
         "topic": topic,
         "images": images,
         "posts": posts,
+        "user": user,
+        "likes": likes,
     }
     return render(request, 'detailed_view.html', context)
+
+
+@login_required
+def report (request, topic_id=None):
+    YOUR_THRESHOLD_VALUE = 5
+    topic = get_object_or_404(models.Topic, pk=topic_id)
+
+    if models.Report_Post.objects.filter(topic=topic, user=request.user).exists():
+        print("-----------User has already reported this post-----------")
+        return redirect('listofpost')
+    else:
+        # Increment the report count for the post
+        topic.report = topic.report + 1
+
+        # Save the report and associate it with the current user
+        models.Report_Post.objects.create(topic=topic, user=request.user)
+
+        # Check if the report count has reached the threshold to mark the post as unverified
+        if topic.report >= YOUR_THRESHOLD_VALUE:
+            topic.is_verified = False
+            topic.save()
+            print("-----------Post marked as unverified-----------")
+            return redirect('index')
+        else:
+            print("-----------Post report is verified-----------")
+            return redirect('listofpost')
+    return redirect('detailed_view', topic_id=topic_id)
+
+# #like the post
+# def like_post(request, topic_id=None):
+#     print("-----------like added-----------")
+#     topic = get_object_or_404(models.Topic, pk=topic_id)
+#     topic.likes.add(request.user)
+#     # like_text = "Unlike"
+#     print("-------------like added-------------")
+#     # like_count = topic.likes.count()
+#     return render('detailed_view')
+
+# def unlike_post(request, topic_id=None):
+#     print("-----------like removed-----------")
+#     topic = get_object_or_404(models.Topic, pk=topic_id)
+#     topic.likes.remove(request.user)
+#     # like_text = "Like"
+#     print("-------------like removed-------------")
+#     # like_count = topic.likes.count()
+#     return render('detailed_view')

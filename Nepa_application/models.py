@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import EmailValidator
 from django.utils import timezone
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 # creating a model for 7 provience that contains name, capital description and image using cloudinary
@@ -37,12 +37,25 @@ class Topic(models.Model):
     post_date = models.DateTimeField(default=timezone.now)
     is_verified = models.BooleanField(default=False)
     author = models.CharField(max_length=100, default="Anonymous")
+    likes = models.ManyToManyField(User, related_name='topic', blank=True)
+    report = models.IntegerField(User, default=0)
+
 
     def __str__(self):
         return self.title
     
-    class meta:
+    class Meta:
         ordering = ['-post_date']
+    
+    def total_likes(self):
+        return self.likes.count()
+    
+class Report_Post(models.Model):
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('topic', 'user')
 
 class T_Image(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)

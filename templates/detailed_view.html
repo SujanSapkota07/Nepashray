@@ -63,6 +63,11 @@
   left: 50%;
   transform: translateX(-50%);
 }
+a{
+  text-decoration: none;
+  color: inherit;
+
+}
 
 
 </style>
@@ -276,97 +281,74 @@
          {{topic.long_description | safe}}
         </p>
 
+        {% if user %}
+        
+
         <!-- Like, Comment, Share, Report Section -->
         <div class="container mt-5">
             <div class="row">
               <div class="col-md-6 offset-md-3">
                 <div class="d-flex justify-content-start align-items-center mb-4">
                   <!-- Like Button -->
-                  <button class="btn btn-outline-primary mr-4" onclick="likePost()">Like</button>
+                  <button class="btn btn-outline-primary mr-4 like-button" data-topic-id="{{ topic.id }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
+                        <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a10 10 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733q.086.18.138.363c.077.27.113.567.113.856s-.036.586-.113.856c-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.2 3.2 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.8 4.8 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
+                    </svg>
+                    <span id="like-text">Like
+                      
+                      
+                    </span>   {{likes}}
+
+                </button>
+              
+               
+                
+                
+
           
                   <!-- Share Button -->
-                  <button class="btn btn-outline-info mr-4" onclick="sharePost()">Share</button>
+                  <button class="btn btn-outline-info mr-4" onclick="sharePost()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">
+                      <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5"/>
+                    </svg>
+                    Share
+                  </button>
           
                   <!-- Report Button -->
-                  <button class="btn btn-outline-danger" onclick="reportPost()">Report</button>
+                  <button class="btn btn-outline-danger" onclick="reportPost()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag-fill" viewBox="0 0 16 16">
+                      <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001"/>
+                    </svg>
+                    <a href="{% url 'report' topic.id %}">Report</a></button>
                 </div>
                 <div>
                   <textarea id="commentInput" class="form-control mb-3" rows="3" placeholder="Write a comment..."></textarea>
-                  <button class="btn btn-outline-success btn-block" onclick="submitComment()">Comment</button>
+                  <button class="btn btn-outline-success btn-block" onclick="submitComment()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-square-heart-fill" viewBox="0 0 16 16">
+                      <path d="M2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6 3.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"/>
+                    </svg>
+                    Comment</button>
                 </div>
+                 {% else %}
+                 
+                <div style="margin-top: 50px;">
+                  <p class="request">Please <a href="{% url 'authregister' %}" style=" border: 2px solid #ccc; border-radius: 10px; padding: 10px;text-decoration: none; color: #007bff; text-decoration: underline; font-weight: bold;">login</a> to like and comment on this post.</p>
               </div>
+              
+                {% endif %}
             </div>
           </div>
+         
+          
           <div id="postBox" class="post-box d-none">
             <div id="message" class="message"></div>
           </div>
-          
-          
 
-        <!-- JavaScript for Interaction -->
-        <script>
-          function likePost() {
-            // Implement your like functionality here
-            alert('Post Liked!');
-          }
-
-          function postComment() {
-            // Implement your comment functionality here
-            let comment = document.getElementById('commentInput').value;
-            alert('Comment Posted: ' + comment);
-          }
-
-          function sharePost() {
-            // Implement your share functionality here
-            alert('Post Shared!');
-          }
-
-          function reportPost() {
-            // Implement your report functionality here
-            alert('Post Reported!');
-          }
-        </script>
-
-
-
-
-
-
-
-
+    
 
       </article>
     </div>
   </div>
-
-  <!-- <blockquote>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, perferendis nisi. Nisi, obcaecati sed. Doloremque omnis minima esse ullam cupiditate sint accusantium, itaque temporibus delectus commodi quidem atque id aut, nam, dolorum eligendi impedit. Porro labore dolore et accusamus, ea alias omnis eveniet dolor voluptate veritatis. Nisi assumenda perspiciatis facilis tenetur a ducimus atque dolorum. Non maiores porro minima incidunt quod deserunt ullam id error veniam debitis! Quia, nulla aspernatur.
-      </blockquote> -->
-
-  <br>
-  <br>
-
-  <br>
-
-
-  <!-- <div class="cards">
-        <div class="card">
-          <h4 class="heading-4">Title</h4>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis inventore consectetur eveniet assumenda, distinctio vero delectus. Dicta temporibus error rerum quas esse incidunt. Pariatur ea voluptatibus vitae distinctio cupiditate inventore!</p>
-        </div>
-    
-        <div class="card">
-          <h4 class="heading-4">Title</h4>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores voluptate ullam exercitationem, optio doloribus, eius possimus modi odio esse nobis earum cumque quia perferendis quo. Distinctio ullam libero provident atque excepturi cupiditate, autem commodi tempora sed, consequuntur dolore corrupti reprehenderit.</p>
-        </div>
-    
-        <div class="card">
-          <h4 class="heading-4">Title</h4>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam suscipit corrupti consequuntur nostrum illum alias accusantium sit magni. Eaque, libero soluta nam vitae sequi, sapiente quis, laboriosam numquam commodi aperiam vero. Voluptates libero delectus tenetur, quia ipsum magnam cumque numquam reiciendis. Alias architecto sit praesentium sapiente pariatur quas error fugiat?</p>
-        </div>
-      </div> -->
-  <!-- BLOG1 END -->
-
 
 
 

@@ -1,34 +1,134 @@
-{% include 'header.html' %} {% load static %}
+{% load static %}
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+
+ <head>
+
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="">
+   <meta name="author" content="Tooplate">
+   <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+   <title>NEPASHRAY</title>
+
+
+   <!-- Additional CSS Files -->
+   <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+
+   <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+
+   <link rel="stylesheet" type="text/css" href="{% static 'assets/css/owl-carousel.css' %}">
+
+   <link rel="stylesheet" href="{% static 'assets/css/tooplate-artxibition.css' %}">
+   <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+<!-- this later added -->
+   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400" rel="stylesheet" />
+   <link href="{% static 'assets/css/main.css' %}" rel="stylesheet" />
+
+
+   </head>
+   
+   <body>
+       
+   <!-- ***** Preloader Start ***** -->
+   <!-- <div id="js-preloader" class="js-preloader">
+     <div class="preloader-inner">
+       <span class="dot"></span>
+       <div class="dots">
+         <span></span>
+         <span></span>
+         <span></span>
+       </div>
+     </div>    
+   </div> -->
+   <!-- ***** Preloader End ***** -->
+   
+   <!-- ***** Pre HEader ***** -->
+   <div class="pre-header">
+       <div class="container">
+           <div class="row">
+               <div class="col-lg-6 col-sm-6">
+                   <span>Namaste to Our StoryTeller/Seeker!</span>
+               </div>
+               <div class="col-lg-6 col-sm-6">
+                   <div class="text-button">
+                      <button class="contactbutton"> <a href="{% url 'contact' %}">Contact Now <i class="fa fa-arrow-right"></i></a></button>
+                      {% if user.is_authenticated %}
+                      <button class="contactbutton" style="margin-left: 10px;"> <a href="{% url 'signout' %}"">Log out <i class="fa fa-arrow-right"></i></a></button>
+                      {% endif %}
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+   
+   <!-- ***** Header Area Start ***** -->
+   <header class="header-area header-sticky">
+       <div class="container">
+           <div class="row">
+               <div class="col-12">
+                   <nav class="main-nav">
+                       <!-- ***** Logo Start ***** -->
+                       <a href="{% url 'index' %}" class="logo">NEP<em>ASHRAYA</em></a>
+                       <!-- ***** Logo End ***** -->
+                       <!-- ***** Menu Start ***** -->
+                       <ul class="nav">
+                           <li><a href="{% url 'index' %}">Home</a></li>
+                           <li><a href="#">Watch</a></li>
+
+
+                           {% if user.is_authenticated %}
+                           <li><a href="{% url 'upload' %}">Upload</a></li>
+                           <!-- <li>Upload</li> -->
+                       {% else %}
+                           <li><a href="{% url 'authregister' %}">Register</a></li>
+                       {% endif %}
+                           <!-- <li><a href="{% url 'authregister' %}">Register</a></li>  -->
+                           <!-- <li><a href="tickets.html">Tickets</a></li>  -->
+                       </ul>        
+                       <a class='menu-trigger'>
+                           <span>Menu</span>
+                       </a>
+                       <!-- ***** Menu End ***** -->
+                   </nav>
+               </div>
+           </div>
+       </div>
+   </header>
 <div class="row">
-  {% for post in posts %}
-  {% if post.is_verified %}
-  <div class="col-lg-4">
-    <div class="venue-item" style="margin-bottom: 30px;">
-      {% for image in post.t_image_set.all %}
-      <div class="thumb" style="object-fit: cover; height: 350px;">
-        <img src="{{ image.image.url }}" alt="{{post.title}}" />
-      </div>
-      {% endfor %}
-      <div class="down-content"style="height: 450px;">
-        <div class="left-content">
-          <div class="main-white-button">
-            <a href="{% url 'detailed_view' post.id %}">VIEW</a>
-          </div>
-        </div>
-        <div class="right-content" style="height: 350px;">
-          <h4>{{ post.title| slice:50 }}</h4>
-          <div class="price">
-            <span>posted<br>by <b> {{post.author}}</b></span>
-        </div>
-          <p style="margin-top: 0px;">{{ post.long_description | slice:"200" }}</p>
-          <ul>
-            <li><i class="fa fa-thumbs-up"></i>250</li>
-            <li><i class="fa fa-eye"></i>500</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  {% endif %}
-  {% endfor %}
+ {% for post in posts %}
+ {% if post.is_verified %}
+ <div class="col-lg-4">
+   <div class="venue-item" style="margin-bottom: 30px;">
+     {% for image in post.t_image_set.all %}
+     <div class="thumb" style="object-fit: cover; height: 350px;">
+       <img src="{{ image.image.url }}" alt="{{post.title}}" />
+     </div>
+     {% endfor %}
+     <div class="down-content"style="height: 450px;">
+       <div class="left-content">
+         <div class="main-white-button">
+           <a href="{% url 'detailed_view' post.id %}">VIEW</a>
+         </div>
+       </div>
+       <div class="right-content" style="height: 350px;">
+         <h4>{{ post.title| slice:50 }}</h4>
+         <div class="price">
+           <span>posted<br>by <b> {{post.author}}</b></span>
+       </div>
+         <p style="margin-top: 0px;">{{ post.long_description | slice:"200" }}</p>
+         <ul>
+           <li><i class="fa fa-thumbs-up"></i>{{post.total_likes}}</li>
+           <li><i class="fa fa-eye"></i>500</li>
+         </ul>
+       </div>
+     </div>
+   </div>
+ </div>
+ {% endif %}
+ {% endfor %}
 </div>
