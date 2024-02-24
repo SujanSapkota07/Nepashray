@@ -168,6 +168,20 @@ def block_post(request, topic_id=None):
     topic.delete()
     return redirect('upload')# make changes here
 
+def view_post(request, topic_id=None):
+    topic = get_object_or_404(models.Topic, pk=topic_id)
+    images = models.T_Image.objects.filter(topic=topic)
+    user = request.user.username
+    posts = models.Topic.objects.prefetch_related('t_image_set').all()
+
+    context = {
+        "topic": topic,
+        "images": images,
+        "posts": posts,
+        "user": user,
+    }
+    return render(request, 'detailed_view.html', context)
+
 
 
 

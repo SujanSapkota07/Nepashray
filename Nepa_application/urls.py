@@ -22,6 +22,9 @@ urlpatterns = [
     # URL pattern for blocking a post
     path('block_post/<int:topic_id>/', views.block_post, name='block_post'),
 
+    # URL pattern for viewing  a post
+    path('view_post/<int:topic_id>/', views.view_post, name='view_post'),
+
     # url for managing usser
     path('manageuser/', views.manage_user, name='manage_user'),
     # url to delete a user
@@ -38,5 +41,6 @@ urlpatterns = [
     path('unlike/<int:post_id>/', views.unlike_post, name='unlike_post'),
 
     path("addcomment<id>/",views.add_comment, name="add-comment"),
+
 
      ]

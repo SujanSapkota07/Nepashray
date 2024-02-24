@@ -280,6 +280,13 @@ a{
         <p>
          {{topic.long_description | safe}}
         </p>
+
+
+
+<!-- only if the post is verified -->
+{% if topic.is_verified %}
+
+
         {% if user %}
         <!-- Like, Comment, Share, Report Section -->
         <div class="container mt-5">
@@ -406,6 +413,11 @@ a{
       </article>
     </div>
   </div>
+
+
+{%endif%}
+
+
 
 
 

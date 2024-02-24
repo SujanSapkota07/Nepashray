@@ -187,7 +187,7 @@
                   }
                 </script>
               </form>
-              <form action="#" method="post">
+              <form action="{% url 'view_post' post.id %}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-secondary" style="margin-top: 10px;">View</button>
               </form>
