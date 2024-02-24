@@ -96,6 +96,7 @@ def create_topic(request):
             topic.category.add(*category_ids)
             for image in request.FILES.getlist('images'):
                 models.T_Image.objects.create(topic=topic, image=image)
+            print("-----------Post created successfully-----------")
             return redirect('listofpost')
     else:
         form = forms.TopicForm()
@@ -170,12 +171,15 @@ def block_post(request, topic_id=None):
 
 
 
+
+
 def manage_user(request):
     users = User.objects.filter(is_staff=False)
-    number=get_total_comments_for_user(users)
+    # number=get_total_comments_for_user(users)
+    print(users)
     context = {
         "users": users,
-        "number": number,
+        # "number": number,
     }
 
     return render(request, 'manage_user.html', context)
