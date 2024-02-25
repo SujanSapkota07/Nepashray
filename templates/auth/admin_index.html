@@ -112,6 +112,11 @@
     <a href="{% url 'signout' %}">Logout</a>
 </div>
 
+{% for message in messages %}
+        <div>{{message}}</div>
+{% endfor %}
+
+
 
 
 {% if user.is_authenticated and user.is_staff %}
