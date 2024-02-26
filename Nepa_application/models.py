@@ -40,6 +40,7 @@ class Topic(models.Model):
     likes = models.ManyToManyField(User, related_name='topic', blank=True)
     report = models.IntegerField(User, default=0)
     commentCount = models.IntegerField(default=0, null=True, blank=True)
+    views = models.IntegerField(default=0)
 
 
     def __str__(self):

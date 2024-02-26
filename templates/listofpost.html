@@ -1,4 +1,4 @@
-{% load static %}
+
 {%load static%}
 
 <!DOCTYPE html>
@@ -90,9 +90,6 @@
                            <!-- <li><a href="{% url 'authregister' %}">Register</a></li>  -->
                            <!-- <li><a href="tickets.html">Tickets</a></li>  -->
                        </ul>        
-                       <a class='menu-trigger'>
-                           <span>Menu</span>
-                       </a>
                        <!-- ***** Menu End ***** -->
                    </nav>
                </div>
@@ -116,14 +113,14 @@
          </div>
        </div>
        <div class="right-content" style="height: 350px;">
-         <h4>{{ post.title| slice:50 }}</h4>
+         <h4>{{ post.title.title| slice:50 }}</h4>
          <div class="price">
-           <span>posted<br>by <b> {{post.author}}</b></span>
+           <span>posted<br>by <b> {{post.author.title}}</b></span>
        </div>
          <p style="margin-top: 0px;">{{ post.long_description | slice:"200" }}</p>
          <ul>
            <li><i class="fa fa-thumbs-up"></i>{{post.total_likes}}</li>
-           <li><i class="fa fa-eye"></i>500</li>
+           <li><i class="fa fa-eye"></i>{{post.views}}</li>
          </ul>
        </div>
      </div>

@@ -110,8 +110,10 @@ def create_topic(request):
 def listofpost(request):
     # Retrieve all topics with related T_Image instances
     posts = models.Topic.objects.prefetch_related('t_image_set').all()
+    user = request.user.username
     context = {
         "posts": posts,
+        "user": user,
         }
     return render(request, 'listofpost.html', context)
 
@@ -205,7 +207,6 @@ def delete_user(request, user_id=None):
 
 
 #detailed view of the post
-@login_required(login_url='authregister')
 def detailed_view(request, topic_id=None):
     topic = get_object_or_404(models.Topic, pk=topic_id)
     images = models.T_Image.objects.filter(topic=topic)
@@ -213,6 +214,9 @@ def detailed_view(request, topic_id=None):
     posts = models.Topic.objects.prefetch_related('t_image_set').all()
     likes = topic.likes.count()
     comments = models.Comment.objects.filter(post=topic)
+    topic.views = topic.views + 1
+    topic.save()
+
 
     context = {
         "topic": topic,
@@ -227,7 +231,7 @@ def detailed_view(request, topic_id=None):
 
 @login_required
 def report (request, topic_id=None):
-    YOUR_THRESHOLD_VALUE = 5
+    YOUR_THRESHOLD_VALUE = 1
     topic = get_object_or_404(models.Topic, pk=topic_id)
 
     if models.Report_Post.objects.filter(topic=topic, user=request.user).exists():

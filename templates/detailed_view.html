@@ -71,10 +71,61 @@ a{
 
 
 </style>
+<style>
+  body{
+    /* font-family: Arial, Helvetica, sans-serif; */
+font-size: 16px; /* Font size in pixels */
+line-height: 1.5; /* Line spacing as a multiplier of the font size */
+background-color: #f5f5f5; /* Lighter background color for better contrast */
+color: #212529; /* Darker text color for better contrast */
+}
+  
+</style>
 </head>
 
 <body>
+  <div class="pre-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-sm-6">
+                <span>Namaste to Our StoryTeller/Seeker!</span>
+            </div>
+            <div class="col-lg-6 col-sm-6">
+                <div class="text-button">
+                   <button class="contactbutton"> <a href="{% url 'contact' %}">Contact Now <i class="fa fa-arrow-right"></i></a></button>
+                   {% if user.is_authenticated %}
+                   <button class="contactbutton" style="margin-left: 10px;"> <a href="{% url 'signout' %}"">Log out  <i class="fa fa-arrow-right"></i></a></button>
+                   {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky" style="background-color: #f5f5f5;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="{% url 'index' %}" class="logo">NEP<em>ASHRAYA</em></a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="{% url 'listofpost' %}">Watch all</a></li>
+
+
+                        
+                        <!-- <li><a href="{% url 'authregister' %}">Register</a></li>  -->
+                        <!-- <li><a href="tickets.html">Tickets</a></li>  -->
+                    </ul>        
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
   <!-- ***** Preloader Start ***** -->
   <div id="js-preloader" class="js-preloader">
     <div class="preloader-inner">
@@ -104,105 +155,10 @@ a{
         </div>
     </div> -->
 
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-
-          <!-- start experiment -->
-
-          <!-- <nav class="navbar">
-                        <div class="dropdown">
-                          <button class="dropbtn">Dropdown</button>
-                          <div class="dropdown-content">
-                            <a href="#">Option 1</a>
-                            <a href="#">Option 2</a>
-                          </div>
-                        </div>
-                      </nav> -->
-
-
-          <!-- end experiment -->
-          <!-- <nav class="main-nav"> -->
-          <!-- ***** Logo Start ***** -->
-          <!-- <a href="index.html" class="logo">SKATEBOARDERS | <em>  By Ronish  Dahal</em></a> -->
-          <!-- ***** Logo End ***** -->
-          <!-- ***** Menu Start ***** -->
-          <!-- <ul class="nav">
-                            <li><a href="index.html">Home</a></li> -->
-          <!-- <li><a href="#about">About Us</a></li> -->
-          <!-- need to change upper amazing venues to about us here and below later -->
-
-          <!-- <li><a href="#latests">Explore Latests</a></li> -->
-          <!-- <li ><a href="about.html">About</a></li> -->
-
-          <!-- <div class="dropdown">
-                                <button class="dropbtn">Notions</button>
-                                <div class="dropdown-content">
-                                  <a href="musings.html">Musings</a>
-                                  <a href="#">Stories Of People</a>
-                                </div>
-                            </div> -->
-
-          <!-- <li ><a href="#about">Notions</a></li> -->
-          <!-- <li ><a href="#films">Films</a></li>
-                            <li ><a href="#about">Poems</a></li> -->
-          <!-- <li ><a href="#about">Interstellar</a></li> -->
-          <!-- <li ><a href="#about">Articles</a></li>
-                            <li ><a href="#about">Stories Of People</a></li> -->
-          <!-- <li ><a href="#about">About</a></li> -->
-          <!-- <li ><a href="#newsletter">Subscribe Newsletter</a></li> -->
-
-
-
-          <!-- <li><a href="register/index.html">Register</a></li>  -->
-          <!-- <li><a href="tickets.html">Tickets</a></li>  -->
-          <!-- </ul>         -->
-          <!-- <a class='menu-trigger'>
-                            <span>Menu</span>
-                        </a> -->
-          <!-- ***** Menu End ***** -->
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
-
-  <!-- ***** er Area Start ***** -->
-
-  <!-- <div class="main-banner" style="background-image: url(assets/images/skate.jpg) ;>
-        
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="main-content" > -->
-  <!-- <h5 class="add-white">{ Visuals & Thoughts Curated By Shreyansi }</h5> -->
-  <!-- <h2>SKATEBOARDERS OF NEPAL</h2>
-                        <h3 class="add-white"> covered by Ronish Dahal</h3> -->
-  <!-- <div class="main-white-button"> -->
-  <!-- <input type="text" id="input-box" placeholder="Anything specific ?, Let us know the keyword"> -->
-  <!-- <button>SEARCH</button> -->
-  <!-- <a href="discoverr.html">Witness Stories</a>
-                        </div> -->
-  <!-- </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-  <!-- ***** Main Banner Area End ***** -->
-  <!-- <br><br> -->
-
-  <!-- <h1 style="text-align: center;" > { FILMS }</h1> -->
-  <!-- <br><br><br> -->
-
-
-  <!-- BLOG 1 START -->
 
   <div class="container">
     <header>
-      <h3 class="heading-1">{{topic.title}} :</h3>
+      <h3 class="heading-1">{{topic.title.title}} </h3>
       <h3> </h3>
       <div class="sub-heading">
 
@@ -265,6 +221,7 @@ a{
     
                 <div class="list">
                   <img src="img/list-img-4.jpg" alt="photo 4">
+                  
                   <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, veritatis!</p>
                 </div>
               </div> -->
@@ -272,17 +229,20 @@ a{
       </div>
       <br>
       <article>
-        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos suscipit labore nihil voluptatum recusandae facere dicta veritatis iusto tempore, debitis officia qui nostrum repellendus autem numquam obcaecati sunt itaque in repudiandae expedita omnis saepe modi explicabo error! Sunt quaerat vitae omnis eaque culpa nihil sequi velit ullam fugiat, cupiditate atque quasi eum obcaecati, cumque officiis iure ipsam! Inventore voluptate dignissimos nemo! In exercitationem rerum sunt quo maxime consequatur ab accusamus explicabo voluptatem ratione. Eveniet hic, quibusdam repellendus illum quas provident corrupti dolores assumenda quis explicabo rerum reiciendis, tempore expedita iure ab numquam, facilis officia pariatur veritatis iste mollitia quam neque.</p>
-    
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente sint assumenda, alias blanditiis tempora quae, ea necessitatibus magnam velit culpa expedita optio voluptatem. Ad tenetur iure quisquam inventore! In sunt error quis magni quibusdam quos alias id odio eius eum, nostrum odit voluptates iste delectus harum labore nulla est quo?</p>
-    
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam aliquid molestiae, dolore cupiditate iusto cumque et sit praesentium magni fuga! Saepe neque rerum, illo possimus quasi ipsum nostrum sapiente sequi harum asperiores unde pariatur officia magni tempore, ipsa molestias odit eligendi aspernatur sunt soluta dolores suscipit? Modi consectetur porro similique. Eaque magnam quae doloribus voluptates pariatur nulla beatae non tempore nisi, explicabo sequi. Quisquam blanditiis aliquam optio culpa! Placeat fugiat a aliquid fuga accusamus non minus reiciendis quia delectus! Maxime, facere laborum, reprehenderit aut obcaecati cumque cupiditate quam a ex consectetur velit ipsa? Repellat dolor voluptate esse, placeat eius veniam quae atque sapiente sunt autem. Quod ea ducimus illo voluptatum eveniet in assumenda voluptates veritatis numquam magnam consequuntur sunt explicabo, harum dolorum nostrum laborum fugiat velit! Perferendis consectetur totam voluptatem commodi sapiente quas? Modi voluptas laborum officia atque consequuntur quos ipsum incidunt vero corrupti fuga maiores, enim at ex dolores!</p> -->
         <p>
          {{topic.long_description | safe}}
         </p>
 
+        <br><br>
 
 
+        <!-- back button here   -->
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <a href="{% url 'listofpost' %}" class="btn btn-primary">Back</a>
+            </div>
+          </div>
 <!-- only if the post is verified -->
 {% if topic.is_verified %}
 
