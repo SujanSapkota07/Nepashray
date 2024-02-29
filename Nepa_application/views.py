@@ -119,9 +119,9 @@ def listofpost(request):
 
 
 
-@login_required
+@login_required(login_url="authsignin")
 def upload(request):
-    contex = []
+    context = []
     username = request.user.username
     if request.user.is_authenticated and  request.user.is_staff:
         unverified_posts = models.Topic.objects.filter(is_verified=False)
@@ -292,7 +292,7 @@ def unlike_post(request, post_id):
 
 
 
-@login_required(login_url="signin")
+@login_required(login_url="authsignin")
 def add_comment(request, id=None):
    if request.method == "POST":
        try:
