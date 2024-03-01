@@ -1084,7 +1084,8 @@ Coming Events // province blockk
   /* -webkit-text-fill-color:transparent; */
   /* -webkit-background-clip:text; */
   margin: 100px 0px;
-  background-image: linear-gradient(rgba(49, 43, 6, 0.267), rgba(247, 35, 56, 0.037)), url(../images/jansy.jpg);
+  background-image: linear-gradient(rgba(40, 37, 37, 0.53), rgba(255, 255, 255, 0)), url(../images/po.jpg);
+
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;

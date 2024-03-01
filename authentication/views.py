@@ -62,8 +62,8 @@ def signup(request):
 
        #Welcome email
 
-       subject = "Welcome to Nepashraya -Django login"
-       message = "hello" + " "+ myuser.first_name + "!! \n" + "Welcome to Nepashraya!! \n  Thank you for visiting our website \n  \n\n Thanking you\n Dev team "
+       subject = "Registration on Nepashraya"
+       message = "hello" + " "+ myuser.first_name + "!! \n" + "Welcome to NEPआश्रय!! \n  Thank you for visiting our website \n \n\n Thank you!\nNEPआश्रय Dev Team "
        from_email = settings.EMAIL_HOST_USER
        to_list = [myuser.email]
        send_mail(subject, message, from_email, to_list, fail_silently=True)

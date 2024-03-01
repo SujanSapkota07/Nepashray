@@ -1,12 +1,11 @@
 {% autoescape off %}
 
-Welcome to Django Login
+<h3>NEPआश्रय</h3>
 
-Hello {{ name }}!
+Hello {{ name.title }}!
 
-Please confirm your emaiil by clicking on the following link
+Please confirm your email by clicking on the following link
 
 Confirmation Link: http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
-
 
 {% endautoescape %}
