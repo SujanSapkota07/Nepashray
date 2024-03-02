@@ -37,9 +37,9 @@ urlpatterns = [
     #report the post
     path('report/<int:topic_id>/', views.report, name='report'),
 
-    #like the post
-    path('like/<int:post_id>/', views.like_post, name='like_post'),
-    path('unlike/<int:post_id>/', views.unlike_post, name='unlike_post'),
+    # #like the post
+    # path('like/<int:post_id>/', views.like_post, name='like_post'),
+    # path('unlike/<int:post_id>/', views.unlike_post, name='unlike_post'),
 
     path("addcomment<id>/",views.add_comment, name="add-comment"),
 

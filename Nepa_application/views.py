@@ -1,3 +1,4 @@
+# from math import sumprod
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
@@ -125,12 +126,21 @@ def listofpost(request):
         }
     return render(request, 'listofpost.html', context)
 
+# function to calculate total views got by user in all post
+def views(username):
+    posts = models.Topic.objects.filter(author=username)
+    total_views = 0
+    for post in posts:
+        total_views += post.views
+    return total_views
 
 
 @login_required(login_url="authsignin")
 def upload(request):
     context = []
     username = request.user.username
+    total_likess = views(username)
+    print(total_likess)
     if request.user.is_authenticated and  request.user.is_staff:
         unverified_posts = models.Topic.objects.filter(is_verified=False)
         categories = models.Category.objects.all()
@@ -143,6 +153,7 @@ def upload(request):
                 'categories':categories,
                 'number_of_total_posts':number_of_total_posts,
                 'number':total_comments,
+                'total_likes':total_likess,
 
                 } 
     if request.user.is_authenticated and not request.user.is_staff:
@@ -157,6 +168,7 @@ def upload(request):
                 'number_of_total_posts':number_of_total_posts,
                 'date_created': date_created,
                 'number':total_comments,
+                'total_likes':total_likess,
                 }
     return render(request, 'auth/admin_index.html', context)
 
@@ -265,18 +277,17 @@ def report (request, topic_id=None):
 
 
 
-@login_required
-def like_post(request, post_id):
-    post = get_object_or_404(models.Topic, pk=post_id)
-    post.likes.add(request.user)
-    return redirect('detailed_view', post_id=post_id)
+# @login_required
+# def like_post(request, post_id):
+#     post = get_object_or_404(models.Topic, pk=post_id)
+#     post.likes.add(request.user)
+#     return redirect('detailed_view', post_id=post_id)
 
-@login_required
-def unlike_post(request, post_id):
-    post = get_object_or_404(models.Topic, pk=post_id)
-    post.likes.remove(request.user)
-    return redirect('detailed_view', post_id=post_id)
-
+# @login_required
+# def unlike_post(request, post_id):
+#     post = get_object_or_404(models.Topic, pk=post_id)
+#     post.likes.remove(request.user)
+#     return redirect('detailed_view', post_id=post_id)
 
 
 # #like the post
@@ -312,28 +323,4 @@ def add_comment(request, id=None):
        except Exception as e:
            return HttpResponse(e)
    return HttpResponseRedirect(reverse("detailed_view", args=[id]))
-
-
-# # for forget password
-
-
-# def forgot_password(request):
-#     if request.method == 'POST':
-#         form = PasswordResetForm(request.POST)
-#         if form.is_valid():
-#             form.save(request=request)
-#             print("-----------Password reset email sent-----------")
-#             # return redirect('password_reset_confirm')
-#             return render(request, 'reset_password_confirm.html')
-#     else:
-#         form = PasswordResetForm()
-#     return render(request, 'forgot_password.html', {'form': form})
-
-
-# def reset_password_confirm(request, uidb64, token):
-#     return auth_views.PasswordResetConfirmView.as_view()(request, uidb64=uidb64, token=token, template_name='reset_password_confirm.html')
-
-
-# def reset_password_complete(request):
-#     return auth_views.PasswordResetCompleteView.as_view()(request, template_name='reset_password_complete.html')
 

@@ -1,4 +1,5 @@
-{% load static %}
+{%load static%}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,56 +15,92 @@
 
 
     <!-- Additional CSS Files -->
-   <!-- Additional CSS Files -->
-   <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
 
-   <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
 
-   <link rel="stylesheet" type="text/css" href="{% static 'assets/css/owl-carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/owl-carousel.css' %}">
 
-   <link rel="stylesheet" href="{% static 'assets/css/tooplate-artxibition.css' %}">
-   <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/tooplate-artxibition.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 
+<!-- this later added -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400" rel="stylesheet" />
     <link href="{% static 'assets/css/main.css' %}" rel="stylesheet" />
 
 
     </head>
-
-    <body>
     
-        <div class="coming-events" style="background-image: linear-gradient(rgba(2, 54, 73, 0.864), rgba(99, 102, 5, 0.311)), url('{% static 'assets/images/carousellimg2.jpg' %}');">
-           
-    <!-- the seven provinces listed // old coming events -->
-    <!-- <div class="left-button">
-        <div class="main-white-button">
-            <a href="hotpicks.html">SEE<br> Hot Picks Of The Week</a>
-        </div>
-    </div> -->
-
-    <!-- the seven provinces listed -->
-    <div class="container">
-        <div class="row">
-        
-            <h1 class="add-white mb-2" style="justify-content: center"> || DISCOVER SPECIFICS WITH NEPASHRAY'S GENRES  ||</h1>
-            
-                <!-- {%for category in categories %}
-                <div class="col-lg-3 ml-5 mb-3">
-                    <div class="event-item">
-                        <div class="thumb">
-                            <a href="artpage.html"><img class="img-fit" size="20px" src="{{category.image.url}}" alt="p1"></a>
-                        </div>
-                        <div class="down-content">
-                            <a href="artpage.html"><h4>{{category.name}}</h4></a>
-                            <ul>
-                                <li style="text-align: center;">{{category.description}}</li>
-                                <!-- <li><i class="fa fa-map-marker"></i> Biratnagar [Capital] </li> -->
-                            <!-- </ul>
-                        </div>
+    <body>
+       
+    
+    <!-- ***** Pre HEader ***** -->
+    <div class="pre-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-6">
+                    {% if username %}
+                    <span>Welcome, {{username|capfirst}}</span>
+                    {% else %}
+                    <span>Namaste to Our StoryTeller/Seeker!</span>
+                    {% endif %}
+                </div>
+                <div class="col-lg-6 col-sm-6">
+                    <div class="text-button">
+                       <button class="contactbutton"> <a href="{% url 'contact' %}">Contact Now <i class="fa fa-arrow-right"></i></a></button>
+                       {% if user.is_authenticated %}
+                       <button class="contactbutton" style="margin-left: 10px;"> <a href="{% url 'signout' %}"">Log out <i class="fa fa-arrow-right"></i></a></button>
+                       {% endif %}
                     </div>
                 </div>
-                {% endfor %} --> -->
-            
+            </div>
+        </div>
+    </div>
+    
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky" style="margin-bottom: -100px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="{% url 'index' %}" class="logo">NEP<em>आश्रय</em></a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="{% url 'index' %}" class="active">Home</a></li>
+                            <li><a href="#about">About Us</a></li>
+                            <!-- need to change upper amazing venues to about us here and below later -->
+
+                            <li><a href="#latests">Explore Latests</a></li>
+                            <li><a href="{% url 'listofpost' %}">Watch</a></li>
+
+
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'upload' %}">Upload</a></li>
+                            <!-- <li>Upload</li> -->
+                        {% else %}
+                            <li><a href="{% url 'authregister' %}">Register</a></li>
+                        {% endif %}
+                            <!-- <li><a href="{% url 'authregister' %}">Register</a></li>  -->
+                            <!-- <li><a href="tickets.html">Tickets</a></li>  -->
+                        </ul>        
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+    <body>
+        <div class="coming-events" style="background-image: linear-gradient(rgba(2, 54, 73, 0.864), rgba(99, 102, 5, 0.311)), url('{% static 'assets/images/carousellimg2.jpg' %}');">
+      
+    <div class="container">
+        <div class="row">
+            <h1 class="add-white mb-2" style="justify-content: center"> || DISCOVER SPECIFICS WITH NEPASHRAY'S GENRES  ||</h1>
             <!-- single card start -->
                 {% for category in categories %}
             <div class="col-lg-3 ml-5 mb-3">
