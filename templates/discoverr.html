@@ -8,6 +8,19 @@
   <title>Discover</title>
   <link rel="stylesheet" href="{% static 'assets/css/stylediscover.css' %}">
   <link rel="stylesheet" href="{% static 'assets/css/owl-carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/owl-carousel.css' %}">
+
+    <link rel="stylesheet" href="{% static 'assets/css/tooplate-artxibition.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+<!-- this later added -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400" rel="stylesheet" />
+    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet" />
+
   
   <!-- Google Icons Link -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
@@ -25,18 +38,24 @@ background-image: url('{% static 'assets/images/HH.jpg' %}');">
     <nav class="navbar">
       <!-- probs here january color white -->
       <span  class="menu-links">
-        GENRES OF NEPASHRAY 
+        <div class="logo">
+          GENRES OF NEPASHRAY
+
+        </div>
       </span>
       <!-- till here -->
-      <ul class="menu-links">
-        <li><a href="{% url 'index' %}">Home</a></li>
-        {% if not user.is_authenticated %}
-        <li><a href="{% url 'register' %}">Register</a></li>
-        {% endif %}
-      
-        <li class="join-btn"><a href="{% url 'contact' %}">Contact</a></li>
+      <nav style="margin-top: 20px;">
+
+        <ul class="menu-links">
+          <li><a href="{% url 'index' %}">Home</a></li>
+          {% if not user.is_authenticated %}
+          <li><a href="{% url 'register' %}">Register</a></li>
+          {% endif %}
         
-      </ul>
+          <li class="join-btn"><a href="{% url 'contact' %}">Contact</a></li>
+          
+        </ul>
+      </nav>
       
     </nav>
   </header>
@@ -84,5 +103,23 @@ background-image: url('{% static 'assets/images/HH.jpg' %}');">
     // Close mobile menu on close button click
     closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
   </script>
+    <!-- jQuery -->
+<script src="{% static 'assets/js/jquery-2.1.0.min.js' %}"></script>
+
+<!-- Bootstrap -->
+<script src="{% static 'assets/js/popper.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+<!-- Plugins -->
+<script src="{% static 'assets/js/scrollreveal.min.js' %}"></script>
+<script src="{% static 'assets/js/waypoints.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'assets/js/imgfix.min.js' %}"></script>
+<script src="{% static 'assets/js/mixitup.js' %}"></script>
+<script src="{% static 'assets/js/accordions.js' %}"></script>
+<script src="{% static 'assets/js/owl-carousel.js' %}"></script>
+
+<!-- Global Init -->
+<script src="{% static 'assets/js/custom.js' %}"></script>
 </body>
 </html>
