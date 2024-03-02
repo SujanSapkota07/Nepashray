@@ -9,7 +9,7 @@
         /* Additional styles for form */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            /* background-color: #d61b1b; */
             margin: 0;
             padding: 0;
         }
@@ -59,11 +59,23 @@
         }
     </style>
 </head>
-<body style="background: linear-gradient(135deg, #6e81a4, #cd7a7a);">
-
+<body>
+    {% if messages %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}
     <h2 style="margin-top: 100px;">Hello {{ username }}</h2>
     <div>
-        <form method="post" enctype="multipart/form-data" style="margin-top: 50px;">
+        <form method="post" enctype="multipart/form-data" style="margin-top: 50px; box-shadow: #000000;">
             {% csrf_token %}
             <h2 style="margin-bottom: 20px; text-align: center;">Create Topic</h2>
             {{ form.as_p }}

@@ -1,4 +1,5 @@
-
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
@@ -58,9 +59,16 @@ def search(request):
 def index(request): # for landing page 
     provinces = province.objects.all()
     username = None
+    # providing the topic of latest three post 
+    latest_posts =models.Topic.objects.prefetch_related('t_image_set').all()[:3]
     if request.user.is_authenticated:
         username = request.user.username
-    return render(request, 'index.html', {'provinces': provinces, 'username':username} )
+    context = {
+        "provinces": provinces,
+        "username": username,
+        "latest_posts": latest_posts,
+    }
+    return render(request, 'index.html', context)
 
 
 
@@ -304,3 +312,28 @@ def add_comment(request, id=None):
        except Exception as e:
            return HttpResponse(e)
    return HttpResponseRedirect(reverse("detailed_view", args=[id]))
+
+
+# # for forget password
+
+
+# def forgot_password(request):
+#     if request.method == 'POST':
+#         form = PasswordResetForm(request.POST)
+#         if form.is_valid():
+#             form.save(request=request)
+#             print("-----------Password reset email sent-----------")
+#             # return redirect('password_reset_confirm')
+#             return render(request, 'reset_password_confirm.html')
+#     else:
+#         form = PasswordResetForm()
+#     return render(request, 'forgot_password.html', {'form': form})
+
+
+# def reset_password_confirm(request, uidb64, token):
+#     return auth_views.PasswordResetConfirmView.as_view()(request, uidb64=uidb64, token=token, template_name='reset_password_confirm.html')
+
+
+# def reset_password_complete(request):
+#     return auth_views.PasswordResetCompleteView.as_view()(request, template_name='reset_password_complete.html')
+

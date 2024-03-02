@@ -55,6 +55,7 @@ class Topic(models.Model):
 class Report_Post(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
 
     class Meta:
         unique_together = ('topic', 'user')

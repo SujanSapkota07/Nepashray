@@ -21,6 +21,10 @@
 			color: inherit;
 			text-decoration: none;
 		}
+		a:hover {
+            color: inherit ;
+			text-decoration: none;
+		}
 	</style>
 		<body class="img js-fullheight" style="background-image: url('{% static '/register/images/bg.jpg' %}'); width:100%; height:100%;">
 
@@ -59,18 +63,13 @@
 							</label>
 						</div>
 						<div class="w-50 text-md-right">
-							<a href="#" style="color: #fff">Forgot Password</a>
+							<a href="{% url 'password_reset' %}">Forget Password</a>
 						</div>
 					</div>
 					<br><br><br><br><br><br><br><br><br>
 				</form>
 				
-	          <!-- <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
-	          <div class="social d-flex text-center">
-	          	<a href="" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Facebook</a>
-	          	<a href="#" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Twitter</a>
-	
-	          </div> -->
+	        
 		      </div>
 				</div>
 			</div>
