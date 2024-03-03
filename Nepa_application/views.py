@@ -13,18 +13,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 
 
-# Create your views here.
-
-# def index(request):
-#     provience_dic = provience.objects.all()
-#     return render(request, 'index.html')
-
-# def contact_us(request):
-#     return render(request, 'contactpage.html')
-
 def register(request):
     return render(request, 'auth/landingpage.html')
-
 
 
 def get_total_comments_for_user(username):
@@ -140,7 +130,6 @@ def upload(request):
     context = []
     username = request.user.username
     total_likess = views(username)
-    print(total_likess)
     if request.user.is_authenticated and  request.user.is_staff:
         unverified_posts = models.Topic.objects.filter(is_verified=False)
         categories = models.Category.objects.all()
@@ -247,6 +236,11 @@ def detailed_view(request, topic_id=None):
     user = request.user.username
     posts = models.Topic.objects.prefetch_related('t_image_set').all()
     likes = topic.likes.count()
+
+    if request.user in topic.likes.all():
+        liked = True
+    else:
+        liked = False
     comments = models.Comment.objects.filter(post=topic)
     topic.views = topic.views + 1
     topic.save()
@@ -257,8 +251,9 @@ def detailed_view(request, topic_id=None):
         "images": images,
         "posts": posts,
         "user": user,
-        "likes": likes,
+        "liked": liked,
         "comments": comments,
+        "likes": likes,
     }
     return render(request, 'detailed_view.html', context)
 
@@ -290,38 +285,70 @@ def report (request, topic_id=None):
     return redirect('detailed_view', topic_id=topic_id)
 
 
+# like the post
+@login_required
+def like_post(request, topic_id):
+     
+    topic = get_object_or_404(models.Topic, pk=topic_id)
+    images = models.T_Image.objects.filter(topic=topic)
+    user = request.user.username
+    posts = models.Topic.objects.prefetch_related('t_image_set').all()
+    likes = topic.likes.count()
+    topic.likes.add(request.user)
 
-# @login_required
-# def like_post(request, post_id):
-#     post = get_object_or_404(models.Topic, pk=post_id)
-#     post.likes.add(request.user)
-#     return redirect('detailed_view', post_id=post_id)
-
-# @login_required
-# def unlike_post(request, post_id):
-#     post = get_object_or_404(models.Topic, pk=post_id)
-#     post.likes.remove(request.user)
-#     return redirect('detailed_view', post_id=post_id)
+    if request.user in topic.likes.all():
+        liked = True
+    else:
+        liked = False
+    comments = models.Comment.objects.filter(post=topic)
+    topic.views = topic.views + 1
+    topic.save()
 
 
-# #like the post
-# def like_post(request, topic_id=None):
-#     print("-----------like added-----------")
-#     topic = get_object_or_404(models.Topic, pk=topic_id)
-#     topic.likes.add(request.user)
-#     # like_text = "Unlike"
-#     print("-------------like added-------------")
-#     # like_count = topic.likes.count()
-#     return render('detailed_view')
+    context = {
+        "topic": topic,
+        "images": images,
+        "posts": posts,
+        "user": user,
+        "liked": liked,
+        "comments": comments,
+        "likes": likes,
+    }
+    return render(request, 'detailed_view.html', context)
 
-# def unlike_post(request, topic_id=None):
-#     print("-----------like removed-----------")
-#     topic = get_object_or_404(models.Topic, pk=topic_id)
-#     topic.likes.remove(request.user)
-#     # like_text = "Like"
-#     print("-------------like removed-------------")
-#     # like_count = topic.likes.count()
-#     return render('detailed_view')
+
+
+# unlike the post
+@login_required
+def unlike_post(request, topic_id):
+    
+    topic = get_object_or_404(models.Topic, pk=topic_id)
+    images = models.T_Image.objects.filter(topic=topic)
+    user = request.user.username
+    posts = models.Topic.objects.prefetch_related('t_image_set').all()
+    likes = topic.likes.count()
+    topic.likes.remove(request.user)
+
+    if request.user in topic.likes.all():
+        liked = True
+    else:
+        liked = False
+    comments = models.Comment.objects.filter(post=topic)
+    topic.views = topic.views + 1
+    topic.save()
+
+
+    context = {
+        "topic": topic,
+        "images": images,
+        "posts": posts,
+        "user": user,
+        "liked": liked,
+        "comments": comments,
+        "likes": likes,
+    }
+    return render(request, 'detailed_view.html', context)
+
 
 
 
