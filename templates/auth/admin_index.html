@@ -99,6 +99,7 @@
     </script>
     {% if user.is_authenticated and user.is_staff %}
     <a href="{% url 'manage_user'  %}">Manage Users</a>
+    <a href="{% url 'admin_contacts' %}">Contacts</a>
     <a href="{% url 'create_post' %}">Create a Post</a>
     <a href="{% url 'listofpost' %}">View post</a>
 
@@ -112,9 +113,6 @@
     <a href="{% url 'signout' %}">Logout</a>
 </div>
 
-{% for message in messages %}
-        <div>{{message}}</div>
-{% endfor %}
 
 
 

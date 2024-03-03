@@ -27,7 +27,11 @@ class Contact_us(models.Model):
     email = models.EmailField(validators=[EmailValidator(message='Enter a valid email address.')])
     phone = models.CharField(max_length=10)  # Adjust length as needed
     text_message = models.TextField()
+    post_date = models.DateTimeField(default=timezone.now, null=True, blank=True)
 
+    class Meta:
+        ordering = ['-post_date']
+    
 
 class Topic(models.Model):
     title = models.CharField(max_length=100)

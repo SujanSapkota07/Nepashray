@@ -25,7 +25,9 @@ urlpatterns = [
 
     # URL pattern for viewing  a post
     path('view_post/<int:topic_id>/', views.view_post, name='view_post'),
-
+    
+    # to view all the contact us contents
+    path('view_contact/', views.admin_contacts, name='admin_contacts'),
     # url for managing usser
     path('manageuser/', views.manage_user, name='manage_user'),
     # url to delete a user

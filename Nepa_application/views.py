@@ -205,7 +205,21 @@ def view_post(request, topic_id=None):
     return render(request, 'detailed_view.html', context)
 
 
+def admin_contacts(request):
+    contacts = models.Contact_us.objects.all()
+    name = contacts.values('name')
+    email = contacts.values('email')
+    phone = contacts.values('phone')
+    text_message = contacts.values('text_message')
+    context = {
+        "contacts": contacts,
+        "name": name,
+        "email": email,
+        "phone": phone,
+        "text_message": text_message,
+    }
 
+    return render(request, 'admin_contacts.html', context)
 
 
 
