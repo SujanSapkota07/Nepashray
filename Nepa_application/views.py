@@ -124,17 +124,27 @@ def views(username):
         total_views += post.views
     return total_views
 
+# function to calculate total comments got by user in all post
+def comments(username):
+    posts = models.Topic.objects.filter(author=username)
+    total_comments = 0
+    for post in posts:
+        total_comments += post.commentCount
+    return total_comments
+
 
 @login_required(login_url="authsignin")
 def upload(request):
     context = []
     username = request.user.username
     total_likess = views(username)
+    total_comments = comments(username)
     if request.user.is_authenticated and  request.user.is_staff:
         unverified_posts = models.Topic.objects.filter(is_verified=False)
         categories = models.Category.objects.all()
         number_of_total_posts = models.Topic.objects.filter(is_verified=True).count()
-        total_comments = get_total_comments_for_user(username)
+        # total_comments = get_total_comments_for_user(username)
+        # total_comments = comments(username)
 
 
         context = {'unverified_posts': unverified_posts,
@@ -150,7 +160,7 @@ def upload(request):
         date_created = models.Topic.objects.filter(author=username).values('post_date') 
         categories = models.Category.objects.filter(topics__in=my_posts)
         number_of_total_posts = my_posts.count()
-        total_comments = get_total_comments_for_user(username)
+        # total_comments = get_total_comments_for_user(username)
         context = {'my_post': my_posts,
                 'username':username,
                 'categories':categories,
@@ -301,7 +311,6 @@ def like_post(request, topic_id):
     else:
         liked = False
     comments = models.Comment.objects.filter(post=topic)
-    topic.views = topic.views + 1
     topic.save()
 
 
@@ -334,7 +343,6 @@ def unlike_post(request, topic_id):
     else:
         liked = False
     comments = models.Comment.objects.filter(post=topic)
-    topic.views = topic.views + 1
     topic.save()
 
 
@@ -365,3 +373,42 @@ def add_comment(request, id=None):
            return HttpResponse(e)
    return HttpResponseRedirect(reverse("detailed_view", args=[id]))
 
+# function to search the contents
+def search_view(request):
+    query = request.GET.get('q')
+    results = []
+    user = request.user.username
+
+    if query:
+
+        #Search for users
+        user_topics = models.Topic.objects.filter(author__icontains=query).order_by('post_date')
+        results.extend(user_topics)
+        # Search for topics
+        topics = models.Topic.objects.filter(title__icontains=query)
+        results.extend(topics)
+
+        # Search for provinces
+        provinces = province.objects.filter(name__icontains=query)
+        for provincee in provinces:
+            province_topics = provincee.topics.all()
+            results.extend(province_topics)
+
+        # Search for categories
+        categories = models.Category.objects.filter(name__icontains=query)
+        for category in categories:
+            category_topics = category.topics.all()
+            results.extend(category_topics)
+
+
+        unique_results=list(set(results))
+        results = sorted(unique_results, key=lambda x: x.post_date, reverse=True)
+
+
+    context = {
+        'query': query,
+        'posts': results,
+        # 'posts': unique_results,
+        'user': user
+    }
+    return render(request, 'listofpost.html', context)

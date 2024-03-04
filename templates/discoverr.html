@@ -72,11 +72,11 @@ background-image: url('{% static 'assets/images/HH.jpg' %}');">
   <section class="hero-section">
     <div class="content">
       <h1 style="color: rgb(255, 255, 255);"> Find The Feel That Resonates Your Taste </h1>
-      <form action="#" method="get" class="search-form">
+      <form action="{% url 'search_view' %}" method="get" class="search-form">
         <input type="text" name="q" placeholder="Search for your interest..." required>
         <button class="material-symbols-outlined"  type="sumbit">search</button>
       </form>
-      <div class="popular-tags">
+      <!-- <div class="popular-tags">
         Popular:
         <ul class="tags">
           <li><a href="#">Mithila Craft</a></li>
@@ -85,7 +85,7 @@ background-image: url('{% static 'assets/images/HH.jpg' %}');">
           <li><a href="#">Skateboarders of Nepal</a></li>
         </ul>
       </div>
-    </div>
+    </div> -->
   </section>
 
   <!-- from bootsrap caraousel january -->

@@ -488,7 +488,9 @@ header
   color: #e1e5ea!important;
   opacity: 1;
 }
-
+html { 
+  scroll-behavior :smooth 
+}
 .header-area .main-nav .menu-trigger {
   cursor: pointer;
   display: block;
