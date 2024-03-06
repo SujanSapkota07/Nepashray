@@ -11,9 +11,11 @@ from django.contrib import messages
 from . import forms
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
+from django.core.mail import send_mail
 
 
 def register(request):
+
     return render(request, 'auth/landingpage.html')
 
 
@@ -224,6 +226,7 @@ def admin_contacts(request):
 
 def manage_user(request):
     users = User.objects.filter(is_staff=False)
+    # users = User.objects.all()
     # number=get_total_comments_for_user(users)
     print(users)
     context = {
@@ -274,7 +277,6 @@ def report (request, topic_id=None):
     topic = get_object_or_404(models.Topic, pk=topic_id)
 
     if models.Report_Post.objects.filter(topic=topic, user=request.user).exists():
-        print("-----------User has already reported this post-----------")
         return redirect('listofpost')
     else:
         # Increment the report count for the post
@@ -287,10 +289,8 @@ def report (request, topic_id=None):
         if topic.report >= YOUR_THRESHOLD_VALUE:
             topic.is_verified = False
             topic.save()
-            print("-----------Post marked as unverified-----------")
             return redirect('index')
         else:
-            print("-----------Post report is verified-----------")
             return redirect('listofpost')
     return redirect('detailed_view', topic_id=topic_id)
 
@@ -404,7 +404,6 @@ def search_view(request):
         unique_results=list(set(results))
         results = sorted(unique_results, key=lambda x: x.post_date, reverse=True)
 
-
     context = {
         'query': query,
         'posts': results,
@@ -412,3 +411,66 @@ def search_view(request):
         'user': user
     }
     return render(request, 'listofpost.html', context)
+
+def contact_author(request):
+    # sender_email = models.Message.objects.values('sender_email')
+    # receiver_email = models.Message.objects.values('receiver_email')
+    # text_message = models.Message.objects.values('text_message')
+    # context = {
+    #     "sender_email": sender_email,
+    #     "receiver_email": receiver_email,
+    #     "text_message": text_message,
+    # }
+    messages = models.Message.objects.all()
+    context={
+        "messages": messages,
+    }
+    return render(request, 'contact_author.html', context)
+
+def toauthor(request, topic_id=None):
+   if request.method == 'POST':
+        text_message = request.POST.get('message', '')
+        user = request.user
+        sender_email = user.email # my email
+        topic = models.Topic.objects.get(id=topic_id)
+        author = topic.author
+        receiver_email = User.objects.get(username=author).email # author email
+         # Create and save the Message instance
+        message = models.Message(
+            sender_email=sender_email,
+            receiver_email=receiver_email,
+            text_message=text_message,
+        )
+        message.save()
+        # currently showing emails of sender and receiver, later make it show username
+
+        return HttpResponse('Message sent, Please return to the previous page to continue browsing')
+   else:
+       return HttpResponse('Message not sent')
+
+def delete_email(request,message_id=None):
+    message = get_object_or_404(models.Message, pk=message_id)
+    # get the username of sender
+    username = User.objects.get(email=message.sender_email).username
+    print(username)
+    message.delete()
+    return redirect('contact_author')
+
+def approve_email(request,message_id=None):
+    message = get_object_or_404(models.Message, pk=message_id)
+    username = User.objects.get(email=message.sender_email).username
+    sender_email=message.sender_email
+    receiver_email=message.receiver_email
+    text_message=message.text_message
+    # get the username of sender
+    user = User.objects.get(email=sender_email)
+    # send email to the author
+    send_mail(
+        "A user from Nepashraya has sent you a message",
+        text_message+" \n\n\nThis email of the sender is : "+ sender_email+"\n\nThe username is: "+username,
+        "project.nepashraya@gmail.com",
+        [receiver_email],
+        fail_silently=False,
+        )
+    message.delete()
+    return redirect('contact_author')

@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Tooplate">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+  <title>NEPASHRAY</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/font-awesome.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/owl-carousel.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/tooplate-artxibition.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400" rel="stylesheet" />
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet" />
+  <style>
+     .sidebar {
+        margin: 0;
+        padding: 0;
+        width: 200px;
+        background-color: #f1f1f1;
+        position: fixed;
+        height: 100%;
+        overflow: auto;
+      }
+      
+      .sidebar a {
+        display: block;
+        color: black;
+        padding: 16px;
+        text-decoration: none;
+      }
+       
+      .sidebar a.active {
+        background-color: #04AA6D;
+        color: white;
+      }
+      
+      .sidebar a:hover:not(.active) {
+        background-color: #555;
+        color: white;
+      }
+      
+      div.content {
+        margin-left: 200px;
+        padding: 1px 16px;
+        height: 1000px;
+      }
+      
+      @media screen and (max-width: 700px) {
+        .sidebar {
+          width: 100%;
+          height: auto;
+          position: relative;
+        }
+        .sidebar a {float: left;}
+        div.content {margin-left: 0;}
+      }
+      
+      @media screen and (max-width: 400px) {
+        .sidebar a {
+          text-align: center;
+          float: none;
+        }
+      }
+  </style>
+</head>
+<body>
+<header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <a href="{% url 'index' %}" class="logo">NEP<em>आश्रय</em></a>
+                    <ul class="nav">
+                        {% if user.is_authenticated %}
+                        <button class="contactbutton" style="margin-left: 10px;"> <a href="{% url 'signout' %}"">Log out <i class="fa fa-arrow-right"></i></a></button>
+                        {% endif %}
+                    </ul>        
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="sidebar">
+    <a id="refreshButton" href="{%url 'upload'%}">Dashboard</a>
+    <script>
+        document.getElementById("refreshButton").addEventListener("click", function() {
+            location.reload();  // Reload the current page
+        });
+    </script>
+    {% if user.is_authenticated and user.is_staff %}
+    <a href="{% url 'manage_user'  %}" >Manage Users</a>
+    <a href="{% url 'admin_contacts' %}">Contacts</a>
+    <a href="{% url 'contact_author' %}" class="active">Contact Author</a>
+    <a href="{% url 'create_post' %}">Create a Post</a>
+    <a href="{% url 'listofpost' %}">View post</a>
+    <a href="{% url 'signout' %}">Logout</a>
+    {% endif %}
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Message</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in messages %}
+                    <tr>
+                        <td>{{ user.sender_email}}</td>
+                        <td>{{ user.receiver_email}}</td>
+                        <td>{{user.text_message}}</td>
+                        <td>
+                          <a href="{% url 'approve_email' user.id %}" class="btn btn-success btn-sm" style="margin: 5px; padding: 5px;">Approve</a>
+                          <a href="{% url 'delete_email' user.id %}" class="btn btn-danger btn-sm" style="margin: 5px; padding: 5px;">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 from django.urls import path
-# from . import views
+from . import views
 from . import views
 from django.contrib.auth import views as auth_views
 
@@ -57,4 +57,11 @@ urlpatterns = [
 
     # for search page
     path('search_view/', views.search_view, name='search_view'),
+
+# for contacting the author
+    path('contact_author/', views.contact_author, name='contact_author'),
+    path('toauthor/<int:topic_id>/', views.toauthor, name='send_message_to_author'),
+# delete and verify email
+    path('delete_email/<int:message_id>/', views.delete_email, name='delete_email'),
+    path('approve_email/<int:message_id>/', views.approve_email, name='approve_email'),
 ]

@@ -4,8 +4,6 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 # Create your models here.
 
-# creating a model for 7 provience that contains name, capital description and image using cloudinary
-
 
 class province(models.Model):
     name = models.CharField(max_length=100)
@@ -90,3 +88,15 @@ class Comment(models.Model):
 
    def __str__(self):
        return f"{self.content}"
+   # a new class to store the message sent to the author by user
+class Message(models.Model):
+    sender_email = models.EmailField(validators=[EmailValidator(message='Enter a valid email address.')])
+    receiver_email = models.EmailField(validators=[EmailValidator(message='Enter a valid email address.')])
+    text_message = models.TextField()
+    post_date = models.DateTimeField(default=timezone.now, null=True, blank=True)
+
+    class Meta:
+        ordering = ['-post_date']
+
+    def __str__(self):
+        return self.text_message

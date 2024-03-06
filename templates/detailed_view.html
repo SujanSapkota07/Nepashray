@@ -206,31 +206,6 @@ color: #212529; /* Darker text color for better contrast */
               </h2> -->
         </div>
 
-        <!-- <div class="right">
-              <h3 class="heading-3">latest news</h3>
-              <div class="lists">
-                <div class="list">
-                  <img src="img/list-img-1.jpg" alt="photo 1">
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, veritatis!</p>
-                </div>
-    
-                <div class="list">
-                  <img src="img/list-img-2.jpg" alt="photo 2">
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, veritatis!</p>
-                </div>
-    
-                <div class="list">
-                  <img src="img/list-img-3.jpg" alt="photo 3">
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, veritatis!</p>
-                </div>
-    
-                <div class="list">
-                  <img src="img/list-img-4.jpg" alt="photo 4">
-                  
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, veritatis!</p>
-                </div>
-              </div> -->
-        <!-- </div> -->
       </div>
       <br>
       <article>
@@ -256,17 +231,17 @@ color: #212529; /* Darker text color for better contrast */
         <!-- Like, Comment, Share, Report Section -->
         <div class="container mt-5">
             <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <div class="d-flex justify-content-start align-items-center mb-4">
+                <div class="col-md-6 offset-md-3 style="margin: 100px;">
+                    <div class="d-flex justify-content-start align-items-center mb-4" ">
                         <!-- Like Button -->
-                       <button class="btn btn-outline-primary mr-4 like-button" data-post-id="{{ topic.id }}">
+                       <button class="btn btn-outline-primary mr-4 like-button" data-post-id="{{ topic.id }}" style="margin: 15px">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
                                 <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a10 10 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733q.086.18.138.363c.077.27.113.567.113.856s-.036.586-.113.856c-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.2 3.2 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.8 4.8 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
                             </svg>
                             {% if liked %}
                             <a href="{% url 'unlike_post' topic.id %}">Unike</a>
                         {% else %}
-                            <a href="{% url 'like_post' topic.id %}">Like</a>
+                            <a href="{% url 'like_post'  topic.id%}">Like</a>
                         {% endif %}
                             <!-- <span id="like_count{{topic.id}}">Like</span> -->
 
@@ -282,14 +257,64 @@ color: #212529; /* Darker text color for better contrast */
                         </button> -->
         
                         <!-- Report Button -->
-                        <button class="btn btn-outline-danger" onclick="reportPost()">
+                        <button class="btn btn-outline-danger" onclick="reportPost()"style="margin:0px">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flag-fill" viewBox="0 0 16 16">
                                 <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001"/>
                             </svg>
                             <a href="{% url 'report' topic.id %}">Report</a>
                         </button>
-                    </div>
-                    <!-- <div>
+                        <!-- section for contact to the author  -->
+                        
+                        <button class="btn btn-outline-primary mr-4 contacts-button" data-contact-id="{{ topic.id }}" style="margin:20px;" id="contact-button">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                              <path d="M8 0c3.861 0 7 3.139 7 7 0 1.937-1.051 3.648-2.617 4.89-.002.001-.005.004-.008.006-.441.408-.926.724-1.439.943-.308.125-.63.228-.953.315-.365.102-.748.183-1.141.242a6.985 6.985 0 0 1-1.777 0c-.393-.059-.777-.14-1.141-.242-.323-.088-.645-.191-.953-.315-.513-.22-.998-.536-1.439-.943-.003-.003-.006-.005-.008-.006C2.051 10.648 1 8.937 1 7c0-3.861 3.139-7 7-7zm4.184 11.652l-3.1-1.605a2.998 2.998 0 0 0-.945-.156c-.28 0-.554.03-.817.088a6.963 6.963 0 0 1-1.741-.085l-3.1 1.605c.365.382.842.668 1.363.831.244.074.492.139.743.193.234.05.473.089.715.113a7.02 7.02 0 0 1 1.938.479c.323.117.646.268.961.448.345.196.666.431.964.698a2.995 2.995 0 0 0 1.333.793l.49.114.395-.586a7.042 7.042 0 0 0 1.742-.001l.394.586.49-.114a2.998 2.998 0 0 0 1.333-.793 6.978 6.978 0 0 1 1.962-.699c.315-.18.638-.33.961-.447a7.027 7.027 0 0 1 1.938-.479c.242-.024.481-.063.715-.113.251-.054.499-.12.743-.194.52-.164.998-.449 1.363-.832zm-5.465-2.393c1.366 0 2.473-1.117 2.473-2.491s-1.107-2.491-2.473-2.491-2.473 1.117-2.473 2.491 1.107 2.491 2.473 2.491zM5 12.5h2V11H5v1.5zm1-7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                          </svg>
+                          Contact author
+                      </button>
+                      
+                      
+                        
+
+
+
+                      </div>
+                      <div id="contact-form" style="display: none;">
+                          <form id="message-form" action="{% url 'send_message_to_author' topic.id %}" method="POST">
+                              {% csrf_token %}
+                              <textarea name="message" id="message" rows="4" cols="50"></textarea>
+                              <br>
+                              <input type="submit" value="Send to Author">
+                          </form>
+                      </div>
+                      <style>
+                        input[type="submit" i] {
+                          border: none;
+    border-radius: 4px;
+    margin: 30px;
+    padding: 7px;
+    padding-inline: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+                        }
+                      </style>
+                      <script>
+                          document.getElementById('contact-button').addEventListener('click', function() {
+                              var contactForm = document.getElementById('contact-form');
+                              if (contactForm.style.display === 'none') {
+                                  contactForm.style.display = 'block';
+                              } else {
+                                  contactForm.style.display = 'none';
+                              }
+                          });
+                      </script>
+
+
+
+<!-- 
+
+
+                    <div>
                         <textarea id="commentInput" class="form-control mb-3" rows="3" placeholder="Write a comment..."></textarea>
                         <button class="btn btn-outline-success btn-block" onclick="submitComment()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-square-heart-fill" viewBox="0 0 16 16">
@@ -353,6 +378,7 @@ color: #212529; /* Darker text color for better contrast */
 <div class="comment-container">
   <p class="comment-content" style="color: black;">{{ comment.content }}</p>
   <p class="comment-meta" style="color: #495057;">Posted by:   {{ comment.author }}   on   {{ comment.postedOn }}</p>
+  
 </div>
 {% endfor %}
 
@@ -369,6 +395,7 @@ color: #212529; /* Darker text color for better contrast */
         <div style="margin-top: 50px;">
             <p class="request">Please <a href="{% url 'authregister' %}" style=" border: 2px solid #ccc; border-radius: 10px; padding: 10px;text-decoration: none; color: #007bff; text-decoration: underline; font-weight: bold;">login</a> to like and comment on this post.</p>
         </div>
+        <br><br>
         {% endif %}
         
             </div>

@@ -100,6 +100,7 @@
     {% if user.is_authenticated and user.is_staff %}
     <a href="{% url 'manage_user'  %}">Manage Users</a>
     <a href="{% url 'admin_contacts' %}">Contacts</a>
+    <a href="{% url 'contact_author' %}">Contact Author</a>
     <a href="{% url 'create_post' %}">Create a Post</a>
     <a href="{% url 'listofpost' %}">View post</a>
 

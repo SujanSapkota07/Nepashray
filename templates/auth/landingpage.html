@@ -35,7 +35,7 @@
 		<div class="container" style="justify-content: center; align-items: center; margin-top: 100px;">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">WELCOME TO<br><bold> NEPASHRAY'S LOGIN HANDLE</bold></h2>
+					<h2 class="heading-section">WELCOME TO<br><bold> NEPASHRAYA'S LOGIN HANDLE</bold></h2>
 				</div>
 			</div>
 			<div class="row justify-content-center">
@@ -47,10 +47,24 @@
 					<div class="form-group">
 						<input type="text" name="username" class="form-control" placeholder="Username" required>
 					</div>
-					<div class="form-group">
-						<input type="password" name="pass1" class="form-control" placeholder="Password" required>
-						<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-					</div>
+					
+<div class="form-group">
+    <input type="password" name="pass1" id="password-field" class="form-control" placeholder="Password" required>
+    <span id="toggle-password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const passwordField = document.getElementById('password-field');
+    const togglePassword = document.getElementById('toggle-password');
+
+    togglePassword.addEventListener('click', function() {
+        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordField.setAttribute('type', type);
+        this.classList.toggle('fa-eye-slash');
+    });
+});
+</script>
 					<div class="form-group">
 						<button type="submit" style="margin: 3%;" class="form-control btn btn-primary submit px-3">Sign in</button>
 						<button type="submit" style="margin: 3%;" class="form-control btn btn-primary submit px-3"><a href="{% url 'authsignup' %}" >Sign up</a></button>
@@ -62,13 +76,32 @@
 								<span class="checkmark"></span>
 							</label>
 						</div>
-						<div class="w-50 text-md-right">
+						<div class="w-50 text-md-right" style="margin-bottom: 50px;">
 							<a href="{% url 'password_reset' %}">Forget Password</a>
 						</div>
 					</div>
-					<br><br><br><br><br><br><br><br><br>
+					<br><br><br>
 				</form>
-				
+<!-- 
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const rememberCheckbox = document.querySelector('input[name="remember"]');
+	
+		// Check if there's a stored preference for "Remember Me"
+		const rememberMePreference = localStorage.getItem('rememberMe');
+	
+		// If there's a stored preference, update the checkbox accordingly
+		if (rememberMePreference === 'true') {
+			rememberCheckbox.checked = true;
+		}
+	
+		// Add event listener to update local storage when checkbox state changes
+		rememberCheckbox.addEventListener('change', function() {
+			localStorage.setItem('rememberMe', this.checked);
+		});
+	});
+	</script>
+				 -->
 	        
 		      </div>
 				</div>
